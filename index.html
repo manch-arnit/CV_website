@@ -125,10 +125,15 @@ nav.light .hamburger span{background:var(--ink);}
   opacity:0;animation:rise 0.9s ease 0.35s forwards;
 }
 
-.disc-list{display:flex;flex-wrap:wrap;gap:6px 0;flex-direction:column;}
+.disc-list{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0 clamp(24px,3vw,48px);
+}
 .disc-item{
   font-size:10px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;
-  color:var(--dark-mid);line-height:2.2;
+  color:var(--dark-mid);line-height:2.4;
+  white-space:nowrap;
 }
 .disc-item::before{content:'—';color:var(--accent);margin-right:9px;font-size:9px;}
 
@@ -477,7 +482,9 @@ footer{
   .stat:nth-child(2){border-right:none;padding-right:0;}
   .stat:nth-child(3){padding-left:0;}
   .stat:nth-child(4){border-right:none;padding-right:0;}
-  .proj-row{grid-template-columns:40px 1fr 140px 44px;}
+  .proj-row{grid-template-columns:1fr 140px 44px;row-gap:2px;}
+  .proj-num{grid-column:1 / -1;font-size:10px;padding-top:0;margin-bottom:2px;}
+  .proj-body{grid-column:1;}
   .thumb-float{display:none!important;}
   .proj-thumb-mobile{display:block;}
   .about-inner{grid-template-columns:1fr;}
@@ -492,7 +499,9 @@ footer{
   .contact-link .lbl{text-align:left;}
 }
 @media(max-width:680px){
-  .proj-row{grid-template-columns:36px 1fr;}
+  .proj-row{grid-template-columns:1fr;row-gap:2px;}
+  .proj-num{grid-column:1;font-size:10px;padding-top:0;margin-bottom:2px;}
+  .proj-body{grid-column:1;}
   .proj-client,.proj-year{display:none;}
 }
 @media(max-width:600px){
@@ -518,6 +527,67 @@ footer{
   position:absolute;top:16px;right:var(--pad);
   font-size:28px;cursor:pointer;color:var(--dark-mid);
   background:none;border:none;line-height:1;
+}
+
+/* ── CLIENT MARQUEE STRIP ── */
+.marquee-section{
+  background:var(--mid-dark);
+  border-top:1px solid var(--mid-dark-rule);
+  border-bottom:1px solid var(--mid-dark-rule);
+  overflow:hidden;
+  padding:clamp(18px,2.5vw,26px) 0;
+  position:relative;
+}
+.marquee-section::before,
+.marquee-section::after{
+  content:'';
+  position:absolute;
+  top:0;bottom:0;width:clamp(48px,6vw,96px);
+  z-index:2;pointer-events:none;
+}
+.marquee-section::before{
+  left:0;
+  background:linear-gradient(to right,var(--mid-dark),transparent);
+}
+.marquee-section::after{
+  right:0;
+  background:linear-gradient(to left,var(--mid-dark),transparent);
+}
+.marquee-label{
+  font-size:8px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--accent);
+  display:block;text-align:center;
+  margin-bottom:clamp(12px,1.8vw,18px);
+}
+.marquee-track{
+  display:flex;align-items:center;
+  width:max-content;
+  animation:marquee-scroll 48s linear infinite;
+}
+.marquee-track:hover{animation-play-state:paused;}
+.marquee-item{
+  font-family:var(--serif);
+  font-size:clamp(13px,1.6vw,17px);
+  font-style:italic;
+  color:var(--dark-mid);
+  white-space:nowrap;
+  padding:0;
+  transition:color 0.2s;
+}
+.marquee-item::after{
+  content:'·';
+  display:inline-block;
+  margin:0 clamp(16px,2.2vw,28px);
+  color:var(--dark-soft);
+  font-style:normal;
+  font-size:10px;
+  vertical-align:middle;
+  line-height:1;
+}
+.marquee-item:hover{color:var(--paper);}
+@keyframes marquee-scroll{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-50%);}
 }
 </style>
 </head>
@@ -595,6 +665,15 @@ footer{
     <div class="stats-rule"></div>
   </div>
 </section>
+
+<!-- ═══ CLIENT MARQUEE STRIP ═══ -->
+<div class="marquee-section">
+  <span class="marquee-label">Selected Clients</span>
+  <div class="marquee-track">
+    <span class="marquee-item">Google</span><span class="marquee-item">Nike</span><span class="marquee-item">Apple</span><span class="marquee-item">Disney</span><span class="marquee-item">Meta</span><span class="marquee-item">Spotify</span><span class="marquee-item">Amazon</span><span class="marquee-item">PlayStation</span><span class="marquee-item">Lululemon</span><span class="marquee-item">Sony</span><span class="marquee-item">Sephora</span><span class="marquee-item">LinkedIn</span><span class="marquee-item">Warner Bros.</span><span class="marquee-item">Visa</span><span class="marquee-item">Electronic Arts</span><span class="marquee-item">Mastercard</span><span class="marquee-item">YouTube</span><span class="marquee-item">Salesforce</span><span class="marquee-item">The North Face</span><span class="marquee-item">Oracle</span><span class="marquee-item">Tory Burch</span><span class="marquee-item">Hulu</span><span class="marquee-item">Pfizer</span><span class="marquee-item">Levi's</span><span class="marquee-item">AirBnb</span><span class="marquee-item">Shiseido</span><span class="marquee-item">Xbox</span><span class="marquee-item">Capital Group</span><span class="marquee-item">Walmart</span><span class="marquee-item">Nestle</span><span class="marquee-item">IHG</span><span class="marquee-item">Patreon</span><span class="marquee-item">Diageo</span><span class="marquee-item">Taco Bell</span><span class="marquee-item">Wilson</span><span class="marquee-item">Allergan</span><span class="marquee-item">Sherwin-Williams</span><span class="marquee-item">Bush's Beans</span><span class="marquee-item">Home Depot</span><span class="marquee-item">MD Anderson</span>
+    <span class="marquee-item">Google</span><span class="marquee-item">Nike</span><span class="marquee-item">Apple</span><span class="marquee-item">Disney</span><span class="marquee-item">Meta</span><span class="marquee-item">Spotify</span><span class="marquee-item">Amazon</span><span class="marquee-item">PlayStation</span><span class="marquee-item">Lululemon</span><span class="marquee-item">Sony</span><span class="marquee-item">Sephora</span><span class="marquee-item">LinkedIn</span><span class="marquee-item">Warner Bros.</span><span class="marquee-item">Visa</span><span class="marquee-item">Electronic Arts</span><span class="marquee-item">Mastercard</span><span class="marquee-item">YouTube</span><span class="marquee-item">Salesforce</span><span class="marquee-item">The North Face</span><span class="marquee-item">Oracle</span><span class="marquee-item">Tory Burch</span><span class="marquee-item">Hulu</span><span class="marquee-item">Pfizer</span><span class="marquee-item">Levi's</span><span class="marquee-item">AirBnb</span><span class="marquee-item">Shiseido</span><span class="marquee-item">Xbox</span><span class="marquee-item">Capital Group</span><span class="marquee-item">Walmart</span><span class="marquee-item">Nestle</span><span class="marquee-item">IHG</span><span class="marquee-item">Patreon</span><span class="marquee-item">Diageo</span><span class="marquee-item">Taco Bell</span><span class="marquee-item">Wilson</span><span class="marquee-item">Allergan</span><span class="marquee-item">Sherwin-Williams</span><span class="marquee-item">Bush's Beans</span><span class="marquee-item">Home Depot</span><span class="marquee-item">MD Anderson</span>
+  </div>
+</div>
 
 <!-- ═══ LIGHT WORKS SECTION ═══ -->
 <div class="works-section" id="work">
