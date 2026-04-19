@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arnit Manchanda — Senior Visual & Brand Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+:root{
+  --paper:    #F5F1EB;
+  --ink:      #1C1917;
+  --mid:      #57534E;
+  --soft:     #A8A29E;
+  --rule:     #DDD8D1;
+  --hover:    #EDE9E2;
+  --accent:   #B84A2C;
+  --accentlt: #EDD9D3;
+  --dark:     #141210;
+  --mid-dark: #252220;
+  --mid-dark-rule:#302D2A;
+  --mid-dark-mid: #7A7672;
+  --dark2:    #1C1917;
+  --dark-mid: #6B6763;
+  --dark-soft:#3A3735;
+  --dark-rule:#2E2B28;
+  --serif:    'DM Serif Display',Georgia,serif;
+  --sans:     'DM Sans',sans-serif;
+  --max:      1280px;
+  --pad:      clamp(24px,5vw,64px);
+}
+
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-weight:300;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:54px;
+  background:var(--dark);
+  border-bottom:1px solid var(--dark-rule);
+  transition:background 0.4s,border-color 0.4s;
+}
+nav.light{background:var(--paper);border-bottom-color:var(--rule);}
+.nav-inner{
+  max-width:var(--max);margin:0 auto;
+  height:100%;padding:0 var(--pad);
+  display:flex;align-items:center;justify-content:space-between;
+}
+
+.nav-logo{
+  font-family:var(--serif);font-size:15px;letter-spacing:-0.3px;
+  color:var(--paper);text-decoration:none;transition:color 0.3s;
+}
+.nav-logo em{font-style:italic;color:var(--accent);}
+nav.light .nav-logo{color:var(--ink);}
+
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
+.nav-links a{
+  font-size:10.5px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--dark-mid);text-decoration:none;transition:color 0.2s;
+}
+nav.light .nav-links a{color:var(--mid);}
+.nav-links a:hover,
+nav.light .nav-links a:hover{color:var(--accent);}
+
+.nav-cv{
+  font-size:10.5px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--accent);text-decoration:none;
+  border-bottom:1px solid rgba(184,74,44,0.35);padding-bottom:1px;
+  transition:border-color 0.2s, font-weight 0.1s;
+}
+.nav-cv:hover{border-color:var(--accent);font-weight:700;}
+
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--paper);transition:background 0.3s;}
+nav.light .hamburger span{background:var(--ink);}
+
+/* ── HERO — DARK ── */
+.hero{
+  background:var(--dark);
+  padding-top:54px;
+}
+.hero-inner{
+  max-width:var(--max);margin:0 auto;padding:0 var(--pad);
+  padding-top:clamp(52px,8vw,108px);
+}
+
+.hero-eyebrow{
+  font-size:9px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:clamp(18px,3vw,30px);
+  display:flex;align-items:center;gap:12px;
+  opacity:0;animation:rise 0.8s ease 0.1s forwards;
+}
+.hero-eyebrow::before{
+  content:'';width:28px;height:1px;background:var(--accent);flex-shrink:0;
+}
+
+.hero-name{
+  font-family:var(--serif);
+  font-size:clamp(64px,11vw,148px);
+  line-height:0.91;letter-spacing:-0.03em;
+  color:var(--paper);
+  margin-bottom:clamp(28px,4.5vw,52px);
+  opacity:0;animation:rise 0.9s ease 0.2s forwards;
+}
+.hero-name em{font-style:italic;color:var(--accent);display:block;}
+
+/* Disciplines + meta row */
+.hero-bottom{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap:24px;flex-wrap:wrap;
+  padding-bottom:clamp(28px,4vw,48px);
+  border-bottom:1px solid var(--dark-rule);
+  opacity:0;animation:rise 0.9s ease 0.35s forwards;
+}
+
+.disc-list{display:flex;flex-wrap:wrap;gap:6px 0;flex-direction:column;}
+.disc-item{
+  font-size:10px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--dark-mid);line-height:2.2;
+}
+.disc-item::before{content:'—';color:var(--accent);margin-right:9px;font-size:9px;}
+
+.hero-meta{text-align:right;flex-shrink:0;}
+.hero-meta-line{font-size:9.5px;color:var(--dark-mid);line-height:2;letter-spacing:0.04em;}
+.avail{
+  display:inline-flex;align-items:center;gap:7px;margin-top:12px;
+  font-size:8.5px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--accent);border:1px solid rgba(184,74,44,0.35);padding:5px 12px;
+  border-radius:2px;
+}
+.avail-dot{
+  width:5px;height:5px;background:var(--accent);border-radius:50%;
+  animation:pulse 2.2s ease infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.25}}
+
+/* Stats strip — still dark */
+.stats{
+  background:var(--dark);
+}
+.stats-inner{
+  max-width:var(--max);margin:0 auto;padding:0 var(--pad);
+  display:grid;grid-template-columns:repeat(4,1fr);
+  opacity:0;animation:rise 0.9s ease 0.5s forwards;
+}
+/* Rule below stats — matches hero-bottom border exactly (inset by --pad) */
+.stats-rule{
+  position:relative;
+  max-width:var(--max);margin:0 auto;
+  padding:0 var(--pad);
+}
+.stats-rule::after{
+  content:'';display:block;
+  border-top:1px solid var(--dark-rule);
+}
+.stat{
+  padding:clamp(16px,2.8vw,28px) clamp(12px,2vw,24px);
+  border-right:1px solid var(--dark-rule);
+}
+.stat:first-child{padding-left:0;}
+.stat:last-child{border-right:none;padding-right:0;}
+.stat-n{
+  font-family:var(--serif);font-size:clamp(22px,3.5vw,38px);
+  font-style:italic;color:var(--accent);line-height:1;display:block;margin-bottom:4px;
+}
+.stat-l{
+  font-size:8px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--dark-mid);
+}
+
+/* Hard edge transition */
+.section-divider{
+  height:1px;background:var(--rule);
+}
+
+/* ── SELECTED WORKS — LIGHT ── */
+.works-section{background:var(--paper);}
+
+.section-head{
+  max-width:var(--max);margin:0 auto;
+  padding:clamp(36px,5vw,60px) var(--pad) clamp(16px,2.5vw,24px);
+  display:flex;align-items:baseline;justify-content:space-between;
+}
+.section-label{
+  font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--accent);
+}
+.section-count{font-size:9px;color:var(--soft);letter-spacing:0.08em;}
+
+/* Floating thumbnail */
+.thumb-float{
+  position:fixed;width:400px;height:226px;
+  pointer-events:none;z-index:50;
+  opacity:0;transition:opacity 0.22s ease;
+  border-radius:6px;overflow:hidden;
+  box-shadow:0 4px 6px rgba(0,0,0,0.04),0 0 0 0.75px rgba(28,25,23,0.1),0 16px 48px rgba(0,0,0,0.12);
+}
+.thumb-float img{width:100%;height:100%;object-fit:cover;display:block;}
+.thumb-float.on{opacity:1;}
+
+/* Project list wrapper — full width for hover bg, inner constrains content */
+.projects{width:100%;}
+
+.proj-row{
+  display:grid;
+  grid-template-columns:52px 1fr 190px 68px;
+  align-items:start;
+  gap:0 clamp(14px,2vw,24px);
+  padding:clamp(20px,3vw,30px) 0;
+  text-decoration:none;color:inherit;
+  position:relative;
+  max-width:var(--max);
+  margin:0 auto;
+  padding-left:var(--pad);
+  padding-right:var(--pad);
+  box-sizing:border-box;
+  transition:background 0.15s;
+}
+/* Border sits INSIDE the padded content area — matching hero-bottom */
+.proj-row::after{
+  content:'';
+  position:absolute;
+  top:0;
+  left:var(--pad);
+  right:var(--pad);
+  height:1px;
+  background:var(--rule);
+}
+.proj-row:last-child .proj-row-bottom{display:block;}
+.proj-last-border{
+  max-width:var(--max);margin:0 auto;
+  padding:0 var(--pad);
+}
+.proj-last-border::after{
+  content:'';display:block;
+  border-top:1px solid var(--rule);
+}
+
+/* Hover bg — full viewport width behind the row */
+.proj-row::before{
+  content:'';position:absolute;
+  left:50%;right:auto;
+  width:100vw;
+  transform:translateX(-50%);
+  top:0;bottom:0;
+  background:var(--hover);
+  opacity:0;transition:opacity 0.16s;pointer-events:none;
+  z-index:0;
+}
+.proj-row:hover::before{opacity:1;}
+.proj-row:hover .proj-num{color:var(--accent);}
+.proj-row:hover .proj-title{color:var(--accent);}
+.proj-row:hover .proj-year{color:var(--accent);}
+
+.proj-num{
+  font-family:var(--serif);font-size:12px;font-style:italic;
+  color:var(--soft);transition:color 0.2s;
+  position:relative;z-index:1;padding-top:5px;
+}
+.proj-body{position:relative;z-index:1;}
+.proj-client{position:relative;z-index:1;padding-top:5px;}
+.proj-year{
+  position:relative;z-index:1;padding-top:5px;
+  font-family:var(--serif);font-size:13px;font-style:italic;
+  color:var(--soft);text-align:right;transition:color 0.2s;
+}
+.proj-row:hover .proj-year{color:var(--accent);}
+/* Divider line above each row — inset to match hero-bottom */
+.proj-row::after{z-index:1;}
+
+.proj-body{position:relative;z-index:1;}
+.proj-title{
+  font-family:var(--serif);
+  font-size:clamp(19px,2.5vw,28px);
+  letter-spacing:-0.02em;line-height:1.1;
+  color:var(--ink);margin-bottom:7px;transition:color 0.2s;
+}
+.proj-desc{
+  font-size:11.5px;line-height:1.68;color:var(--mid);
+  max-width:520px;margin-bottom:9px;
+}
+.proj-tags{display:flex;flex-wrap:wrap;gap:4px;}
+.proj-tag{
+  font-size:7.5px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--mid);background:var(--accentlt);padding:2px 8px;border-radius:2px;
+}
+.proj-client-name{
+  font-size:10.5px;font-weight:400;color:var(--mid);line-height:1.5;
+}
+.proj-client-conf{
+  font-size:10px;color:var(--soft);font-weight:300;line-height:1.5;
+}
+
+/* Mobile thumbnail */
+.proj-thumb-mobile{
+  display:none;width:100%;aspect-ratio:16/9;
+  object-fit:cover;border-radius:6px;margin-top:12px;
+  box-shadow:0 0 0 0.75px rgba(28,25,23,0.1);
+}
+
+/* ── ABOUT — mid-dark, between paper and hero ── */
+.about-section{
+  background:var(--mid-dark);
+  border-top:1px solid var(--mid-dark-rule);
+  border-bottom:1px solid var(--mid-dark-rule);
+}
+.about-inner{
+  max-width:var(--max);margin:0 auto;
+  padding:clamp(52px,7vw,96px) var(--pad);
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(40px,6vw,96px);align-items:start;
+}
+.about-label{
+  font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:20px;
+}
+.about-heading{
+  font-family:var(--serif);font-size:clamp(28px,4vw,44px);
+  letter-spacing:-0.02em;line-height:1.1;color:var(--paper);margin-bottom:22px;
+}
+.about-heading em{font-style:italic;color:var(--accent);}
+.about-body{
+  font-size:13px;line-height:1.85;color:var(--mid-dark-mid);margin-bottom:28px;
+}
+.about-body strong{color:var(--paper);font-weight:500;}
+.cta{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:10.5px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--paper);text-decoration:none;
+  border-bottom:1px solid rgba(240,237,232,0.3);padding-bottom:2px;
+  transition:color 0.2s,border-color 0.2s;
+}
+.cta:hover{color:var(--accent);border-color:var(--accent);}
+.cta::after{content:'→';font-size:13px;}
+
+/* Credentials — paired layout */
+.creds{}
+.cred-pair{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+  border-bottom:1px solid var(--mid-dark-rule);
+  align-items:stretch;  /* full height divider */
+}
+.cred-pair:first-child{border-top:1px solid var(--mid-dark-rule);}
+
+.cred-half{
+  display:grid;
+  grid-template-columns:22px 1fr;
+  gap:0 12px;
+  padding:clamp(16px,2.2vw,22px) clamp(16px,2vw,28px);
+  align-items:start;
+  align-self:start;
+}
+.cred-half:first-child{ padding-left:0; }
+.cred-half+.cred-half{
+  border-left:1px solid var(--mid-dark-rule);
+  /* no extra padding-left — padding from cred-half already provides spacing */
+}
+/* Right half has no number — collapse that column so text starts at left edge */
+.cred-half+.cred-half{
+  grid-template-columns:1fr;
+}
+.cred-n{
+  font-family:var(--serif);font-size:11px;font-style:italic;
+  color:var(--dark-mid);padding-top:2px;
+  /* right half has empty cred-n — this keeps column width consistent */
+}
+.cred-body{}
+.cred-title{
+  font-size:12px;font-weight:500;color:var(--paper);
+  line-height:1.3;margin-bottom:3px;
+}
+.cred-company{
+  font-size:10px;color:var(--dark-mid);font-weight:300;
+  line-height:1.5;margin-bottom:2px;
+}
+.cred-year{
+  font-size:10px;color:var(--dark-soft);font-weight:300;
+  font-style:italic;margin-bottom:5px;
+}
+.cred-detail{
+  font-size:10px;color:var(--dark-mid);font-weight:300;
+  line-height:1.5;margin-bottom:1px;
+}
+.cred-sub{font-size:10px;color:var(--dark-mid);font-weight:300;line-height:1.55;}
+.cred-accent{
+  display:block;margin-bottom:5px;
+  font-size:7.5px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--accent);
+}
+.cred-areas{
+  display:flex;flex-wrap:wrap;
+  margin-top:3px;
+}
+.cred-areas span{
+  font-size:9px;font-weight:400;letter-spacing:0.04em;
+  color:var(--dark-mid);
+}
+.cred-areas span::after{content:' ·';margin:0 5px;color:var(--dark-soft);}
+.cred-areas span:last-child::after{content:'';}
+
+/* ── CONTACT ── */
+.contact-section{
+  background:var(--dark);
+}
+.contact-inner{
+  max-width:var(--max);margin:0 auto;
+  padding:clamp(52px,7vw,96px) var(--pad);
+  display:flex;justify-content:space-between;align-items:flex-end;
+  gap:40px;flex-wrap:wrap;
+}
+.contact-heading{
+  font-family:var(--serif);
+  font-size:clamp(36px,5.5vw,68px);
+  letter-spacing:-0.03em;line-height:0.93;
+  color:var(--paper);margin-bottom:18px;
+}
+.contact-heading em{font-style:italic;color:var(--accent);}
+.contact-sub{
+  font-size:13px;color:var(--dark-mid);line-height:1.75;max-width:380px;
+}
+.contact-links{display:flex;flex-direction:column;gap:12px;align-items:flex-end;}
+.contact-link{
+  display:flex;align-items:center;gap:12px;
+  font-size:11.5px;color:var(--dark-mid);text-decoration:none;transition:color 0.2s;
+}
+.contact-link:hover{color:var(--accent);}
+.contact-link .lbl{
+  font-size:8px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--dark-soft);width:52px;text-align:right;
+}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--dark);
+  border-top:1px solid var(--dark-rule);
+}
+.footer-inner{
+  max-width:var(--max);margin:0 auto;
+  padding:20px var(--pad);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+}
+.footer-name{font-family:var(--serif);font-size:12px;font-style:italic;color:var(--dark-mid);}
+.footer-links{display:flex;gap:24px;}
+.footer-links a{
+  font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--dark-soft);text-decoration:none;transition:color 0.2s;
+}
+.footer-links a:hover{color:var(--accentlt);}
+.footer-copy{font-size:9px;color:var(--dark-soft);}
+
+/* ── Animations ── */
+@keyframes rise{
+  from{opacity:0;transform:translateY(16px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* ── Responsive ── */
+@media(max-width:1060px){
+  .proj-row{grid-template-columns:44px 1fr 160px 50px;}
+}
+@media(max-width:960px){
+  .stats-inner{grid-template-columns:repeat(2,1fr);}
+  .stat:nth-child(2){border-right:none;padding-right:0;}
+  .stat:nth-child(3){padding-left:0;}
+  .stat:nth-child(4){border-right:none;padding-right:0;}
+  .proj-row{grid-template-columns:40px 1fr 140px 44px;}
+  .thumb-float{display:none!important;}
+  .proj-thumb-mobile{display:block;}
+  .about-inner{grid-template-columns:1fr;}
+  .cred-pair{grid-template-columns:1fr;}
+  .cred-half+.cred-half{
+    border-left:none;padding-left:0;
+    border-top:1px solid var(--mid-dark-rule);
+    padding-top:clamp(10px,1.5vw,14px);
+  }
+  .contact-inner{flex-direction:column;align-items:flex-start;}
+  .contact-links{align-items:flex-start;}
+  .contact-link .lbl{text-align:left;}
+}
+@media(max-width:680px){
+  .proj-row{grid-template-columns:36px 1fr;}
+  .proj-client,.proj-year{display:none;}
+}
+@media(max-width:600px){
+  .nav-links,.nav-cv{display:none;}
+  .hamburger{display:flex;}
+  .hero-meta{display:none;}
+  .disc-list{flex-direction:row;flex-wrap:wrap;gap:0 16px;}
+}
+
+/* Mobile nav overlay */
+.nav-overlay{
+  display:none;position:fixed;inset:0;
+  background:var(--dark);z-index:99;
+  flex-direction:column;align-items:center;justify-content:center;gap:32px;
+}
+.nav-overlay.open{display:flex;}
+.nav-overlay a{
+  font-family:var(--serif);font-size:36px;color:var(--paper);
+  text-decoration:none;font-style:italic;transition:color 0.2s;
+}
+.nav-overlay a:hover{color:var(--accent);}
+.overlay-close{
+  position:absolute;top:16px;right:var(--pad);
+  font-size:28px;cursor:pointer;color:var(--dark-mid);
+  background:none;border:none;line-height:1;
+}
+</style>
+</head>
+<body>
+
+<!-- Floating thumbnail -->
+<div class="thumb-float" id="thumbFloat"><img id="thumbImg" src="" alt=""></div>
+
+<!-- Mobile overlay -->
+<div class="nav-overlay" id="navOverlay">
+  <button class="overlay-close" id="navClose">×</button>
+  <a href="/work" onclick="closeNav()">Work</a>
+  <a href="/about" onclick="closeNav()">About</a>
+  <a href="/contact" onclick="closeNav()">Contact</a>
+</div>
+
+<!-- Nav -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Arnit <em>Manchanda</em></a>
+    <ul class="nav-links">
+      <li><a href="/work" class="active">Work</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+    <a href="#" class="nav-cv">CV ↗</a>
+    <div class="hamburger" id="burger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- ═══ DARK HERO ═══ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Senior Visual &amp; Brand Designer</div>
+    <h1 class="hero-name">
+      Arnit<br><em>Manchanda</em>
+    </h1>
+    <div class="hero-bottom">
+      <div class="disc-list">
+        <span class="disc-item">Brand Systems</span>
+        <span class="disc-item">Information Design</span>
+        <span class="disc-item">Editorial Design</span>
+        <span class="disc-item">Research Communication</span>
+        <span class="disc-item">Pitch &amp; Presentation</span>
+        <span class="disc-item">Motion &amp; Illustration</span>
+      </div>
+      <div class="hero-meta">
+        <div class="hero-meta-line">Based in India &nbsp;·&nbsp; Open to relocate (EU)</div>
+        <div class="hero-meta-line">US &amp; UK client experience &nbsp;·&nbsp; Fortune 500</div>
+        <div class="avail"><span class="avail-dot"></span>Available for projects</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats — still in dark section -->
+  <div class="stats">
+    <div class="stats-inner">
+      <div class="stat">
+        <span class="stat-n">300+</span>
+        <span class="stat-l">Enterprise Projects</span>
+      </div>
+      <div class="stat">
+        <span class="stat-n">20+</span>
+        <span class="stat-l">Fortune 500 Clients</span>
+      </div>
+      <div class="stat">
+        <span class="stat-n">90%</span>
+        <span class="stat-l">Pitch Conversion</span>
+      </div>
+      <div class="stat">
+        <span class="stat-n">6+</span>
+        <span class="stat-l">Years Experience</span>
+      </div>
+    </div>
+    <div class="stats-rule"></div>
+  </div>
+</section>
+
+<!-- ═══ LIGHT WORKS SECTION ═══ -->
+<div class="works-section" id="work">
+  <div class="section-head">
+    <span class="section-label">Selected Works</span>
+    <span class="section-count">09 Projects</span>
+  </div>
+  <div class="projects">
+
+    <a class="proj-row" href="/work/project_the_civic_city/"
+       data-thumb="https://static.wixstatic.com/media/89db99_b98612850a0345d9847254f572f9911a~mv2.png/v1/fill/w_980,h_653,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/The%20Civic%20City%20(1).png">
+      <span class="proj-num">01</span>
+      <div class="proj-body">
+        <div class="proj-title">The Civic City / Inscriptions</div>
+        <div class="proj-desc">Editorial and information design research translating civic time and urban identity into structured visual narratives. Exhibited at Palais de la Porte Dorée, Paris.</div>
+        <div class="proj-tags">
+          <span class="proj-tag">Information Design</span>
+          <span class="proj-tag">Editorial</span>
+          <span class="proj-tag">Exhibition</span>
+        </div>
+        <img class="proj-thumb-mobile" src="https://static.wixstatic.com/media/89db99_b98612850a0345d9847254f572f9911a~mv2.png/v1/fill/w_980,h_653,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/The%20Civic%20City%20(1).png" alt="">
+      </div>
+      <div class="proj-client">
+        <div class="proj-client-name">Academic Project · Warsaw · Paris</div>
+      </div>
+      <div class="proj-year">2019</div>
+    </a>
+
+    <a class="proj-row" href="/work/project_consumer_insight_system/"
+       data-thumb="https://static.wixstatic.com/media/54c107_e84a090e20ed4b1890a1f635ec7ba7e8~mv2.png/v1/fill/w_980,h_653,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/Taco%20Bell.png">
+      <span class="proj-num">02</span>
+      <div class="proj-body">
+        <div class="proj-title">Consumer Insight System</div>
+        <div class="proj-desc">Design-led segmentation report translating dense consumer research into a clear, decision-ready visual narrative for senior stakeholders at a global QSR brand.</div>
+        <div class="proj-tags">
+          <span class="proj-tag">Research Communication</span>
+          <span class="proj-tag">Data Visualisation</span>
+          <span class="proj-tag">Strategy</span>
+        </div>
+        <img class="proj-thumb-mobile" src="https://static.wixstatic.com/media/54c107_e84a090e20ed4b1890a1f635ec7ba7e8~mv2.png/v1/fill/w_980,h_653,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/Taco%20Bell.png" alt="">
+      </div>
+      <div class="proj-client">
+        <div class="proj-client-name">Global QSR Brand</div>
+        <div class="proj-client-conf">(Confidential)</div>
+      </div>
+      <div class="proj-year">2025</div>
+    </a>
+
+    <a class="proj-row" href="/work/project_user_privacy_and_trust/"
+       data-thumb="https://static.wixstatic.com/media/54c107_3d345e8fda834b7f9464557cf4ecb765~mv2.png/v1/fill/w_980,h_653,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/LinkedIn.png">
+      <span class="proj-num">03</span>
+      <div class="proj-body">
+        <div class="proj-title">Research Insight Design — User Privacy &amp; Trust</div>
+        <div class="proj-desc">Translating fragmented qualitative and quantitative privacy research into a structured executive insight report for a global professional networking platform.</div>
+        <div class="proj-tags">
+          <span class="proj-tag">Research Communication</span>
+          <span class="proj-tag">Information Design</span>
+        </div>
+        <img class="proj-thumb-mobile" src="https://static.wixstatic.com/media/54c107_3d345e8fda834b7f9464557cf4ecb765~mv2.png/v1/fill/w_980,h_653,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/LinkedIn.png" alt="">
+      </div>
+      <div class="proj-client">
+        <div class="proj-client-name">Global Professional Network</div>
+        <div class="proj-client-conf">(Confidential)</div>
+      </div>
+      <div class="proj-year">2023</div>
+    </a>
+
+    <a class="proj-row" href="/work/project_graphic_fiction_market_landscape/"
+       data-thumb="https://static.wixstatic.com/media/54c107_70531fc00b2841ffab1ddbd846eace5c~mv2.png/v1/fill/w_980,h_653,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/TWDC%20Comic%20Books.png">
+      <span class="proj-num">04</span>
+      <div class="proj-body">
+        <div class="proj-title">Graphic Fiction Market Landscape</div>
+        <div class="proj-desc">Quantitative market insight report mapping the graphic fiction ecosystem across platforms, formats, and audience segments for a global media and publishing company.</div>
+        <div class="proj-tags">
+          <span class="proj-tag">Market Research</span>
+          <span class="proj-tag">Data Visualisation</span>
+          <span class="proj-tag">Publishing</span>
+        </div>
+        <img class="proj-thumb-mobile" src="https://static.wixstatic.com/media/54c107_70531fc00b2841ffab1ddbd846eace5c~mv2.png/v1/fill/w_980,h_653,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/TWDC%20Comic%20Books.png" alt="">
+      </div>
+      <div class="proj-client">
+        <div class="proj-client-name">Global Media &amp; Publishing</div>
+        <div class="proj-client-conf">(Confidential)</div>
+      </div>
+      <div class="proj-year">2025</div>
+    </a>
+
+    <a class="proj-row" href="/work/project_edtech_visual_identity_systems/"
+       data-thumb="https://static.wixstatic.com/media/54c107_14761c3c32f043a38a291b0a232c67c8~mv2.png/v1/fill/w_980,h_653,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/EdTech%20Visual%20Identity.png">
+      <span class="proj-num">05</span>
+      <div class="proj-body">
+        <div class="proj-title">EdTech Visual Identity System</div>
+        <div class="proj-desc">Scalable brand identity system translating Harappa's Thrive Skills framework into a unified visual language across learning content, enterprise products, and B2B communication.</div>
+        <div class="proj-tags">
+          <span class="proj-tag">Brand Identity</span>
+          <span class="proj-tag">Design Systems</span>
+          <span class="proj-tag">EdTech</span>
+        </div>
+        <img class="proj-thumb-mobile" src="https://static.wixstatic.com/media/54c107_14761c3c32f043a38a291b0a232c67c8~mv2.png/v1/fill/w_980,h_653,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/EdTech%20Visual%20Identity.png" alt="">
+      </div>
+      <div class="proj-client">
+        <div class="proj-client-name">Harappa · UpGrad Enterprise</div>
+      </div>
+      <div class="proj-year">2021</div>
+    </a>
+
+    <a class="proj-row" href="/work/project_editorial_design_and_publishing_system/"
+       data-thumb="https://static.wixstatic.com/media/54c107_5920fb2a166c418f9a24d71cfc11d2f3~mv2.png/v1/fill/w_980,h_1328,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/vertical%20cover.png">
+      <span class="proj-num">06</span>
+      <div class="proj-body">
+        <div class="proj-title">Editorial Design &amp; Publishing System</div>
+        <div class="proj-desc">Comprehensive editorial and publishing design system spanning books, courses, and digital editorial content across print and digital formats.</div>
+        <div class="proj-tags">
+          <span class="proj-tag">Editorial Design</span>
+          <span class="proj-tag">Publishing</span>
+          <span class="proj-tag">Print &amp; Digital</span>
+        </div>
+        <img class="proj-thumb-mobile" src="https://static.wixstatic.com/media/54c107_5920fb2a166c418f9a24d71cfc11d2f3~mv2.png/v1/fill/w_980,h_1328,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/vertical%20cover.png" alt="">
+      </div>
+      <div class="proj-client">
+        <div class="proj-client-name">Harappa Publications · UpGrad</div>
+      </div>
+      <div class="proj-year">2022</div>
+    </a>
+
+    <a class="proj-row" href="/work/project_brand_illustration_system/"
+       data-thumb="https://static.wixstatic.com/media/54c107_1d4212d5e20c49459f48922e2c16e5b8~mv2.png/v1/fill/w_980,h_653,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/Mixed%20Media%20Collages.png">
+      <span class="proj-num">07</span>
+      <div class="proj-body">
+        <div class="proj-title">Brand Illustration System</div>
+        <div class="proj-desc">560+ piece mixed-media illustration library built as the core visual language for Harappa's learning and enterprise ecosystem.</div>
+        <div class="proj-tags">
+          <span class="proj-tag">Brand Illustration</span>
+          <span class="proj-tag">Visual Systems</span>
+          <span class="proj-tag">Motion</span>
+        </div>
+        <img class="proj-thumb-mobile" src="https://static.wixstatic.com/media/54c107_1d4212d5e20c49459f48922e2c16e5b8~mv2.png/v1/fill/w_980,h_653,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/Mixed%20Media%20Collages.png" alt="">
+      </div>
+      <div class="proj-client">
+        <div class="proj-client-name">Harappa · UpGrad Enterprise</div>
+      </div>
+      <div class="proj-year">2021</div>
+    </a>
+
+    <a class="proj-row" href="/work/project_restaurant_brand_and_menu_system/"
+       data-thumb="https://static.wixstatic.com/media/54c107_b72bb36d7ead48ed9a5285e9fe964d54~mv2.png/v1/fill/w_980,h_653,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/Uwolnic%20Kury.png">
+      <span class="proj-num">08</span>
+      <div class="proj-body">
+        <div class="proj-title">Restaurant Brand &amp; Menu System</div>
+        <div class="proj-desc">End-to-end brand identity and menu design for a plant-based restaurant in Warsaw, Poland — from logo and visual language through to in-space print production.</div>
+        <div class="proj-tags">
+          <span class="proj-tag">Brand Identity</span>
+          <span class="proj-tag">Print Design</span>
+          <span class="proj-tag">F&amp;B · Warsaw</span>
+        </div>
+        <img class="proj-thumb-mobile" src="https://static.wixstatic.com/media/54c107_b72bb36d7ead48ed9a5285e9fe964d54~mv2.png/v1/fill/w_980,h_653,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/Uwolnic%20Kury.png" alt="">
+      </div>
+      <div class="proj-client">
+        <div class="proj-client-name">Uwolnić Kury · Warsaw, Poland</div>
+      </div>
+      <div class="proj-year">2020</div>
+    </a>
+
+    <a class="proj-row" href="/work/project_studio_identity_and_pitch_system/"
+       data-thumb="https://static.wixstatic.com/media/54c107_81d43a2be81644e2a9a2c72ebe02d01a~mv2.png/v1/fill/w_980,h_653,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/FLYP.png">
+      <span class="proj-num">09</span>
+      <div class="proj-body">
+        <div class="proj-title">Studio Identity &amp; Pitch System</div>
+        <div class="proj-desc">Full pitch deck and studio identity system for FLYP — Harappa's in-house creative studio — spanning narrative structure, visual language, motion, and interaction design.</div>
+        <div class="proj-tags">
+          <span class="proj-tag">Pitch Design</span>
+          <span class="proj-tag">Motion</span>
+          <span class="proj-tag">Brand Identity</span>
+        </div>
+        <img class="proj-thumb-mobile" src="https://static.wixstatic.com/media/54c107_81d43a2be81644e2a9a2c72ebe02d01a~mv2.png/v1/fill/w_980,h_653,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/FLYP.png" alt="">
+      </div>
+      <div class="proj-client">
+        <div class="proj-client-name">FLYP · UpGrad Enterprise</div>
+      </div>
+      <div class="proj-year">2021</div>
+    </a>
+
+  </div>
+  <div class="proj-last-border"></div>
+</div>
+
+<!-- ═══ ABOUT ═══ -->
+<div class="about-section">
+ <div class="about-inner">
+  <div>
+    <div class="about-label">About</div>
+    <h2 class="about-heading">Designing for<br><em>understanding,</em><br>not just visibility.</h2>
+    <p class="about-body">
+      I build visual systems that make complex ideas land — across brand identity, information design, editorial design, and research communication. For the past <strong>6+ years</strong> I've worked with some of the world's most recognised brands across entertainment, tech, SaaS, FMCG, healthcare, fashion, and consulting.<br><br>
+      My background is international by nature. I studied in <strong>Warsaw</strong>, worked in an EU corporate environment in Poland, and have spent my career embedded within US and UK organisations. Actively seeking senior design roles and long-term partnerships in <strong>Europe</strong>.
+    </p>
+    <a href="/about" class="cta">Read more about me</a>
+  </div>
+  <div class="creds">
+
+    <!-- Row 1: Senior Information Designer | Unity Value Award -->
+    <div class="cred-pair">
+      <div class="cred-half">
+        <span class="cred-n">01</span>
+        <div class="cred-body">
+          <div class="cred-title">Senior Information Designer</div>
+          <div class="cred-company">Material · US &amp; UK enterprise consultancy</div>
+          <div class="cred-year">Dec 2023 – Present</div>
+        </div>
+      </div>
+      <div class="cred-half">
+        <div class="cred-body">
+          <div class="cred-accent">Award</div>
+          <div class="cred-title">Unity Value Award</div>
+          <div class="cred-company">Material</div>
+          <div class="cred-detail">Awarded in first year for outstanding contribution</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: Senior Visual Storyteller | Promoted within 12 months -->
+    <div class="cred-pair">
+      <div class="cred-half">
+        <span class="cred-n">02</span>
+        <div class="cred-body">
+          <div class="cred-title">Senior Visual Storyteller &amp; Editorial Lead</div>
+          <div class="cred-company">UpGrad Enterprise</div>
+          <div class="cred-year">2021 – 2023</div>
+          <div class="cred-areas">
+            <span>Brand Comms</span>
+            <span>Creative Studio</span>
+            <span>Product Design</span>
+            <span>Customer Experience</span>
+          </div>
+        </div>
+      </div>
+      <div class="cred-half">
+        <div class="cred-body">
+          <div class="cred-accent">Promotion</div>
+          <div class="cred-title">Promoted within 12 months</div>
+          <div class="cred-detail">Visual Artist → Senior Visual Storyteller</div>
+          <div class="cred-detail">Fastest promotion in cohort</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 3: BA New Media Arts | Exhibited Paris -->
+    <div class="cred-pair">
+      <div class="cred-half">
+        <span class="cred-n">03</span>
+        <div class="cred-body">
+          <div class="cred-title">BA New Media Arts — First Class</div>
+          <div class="cred-company">Polish-Japanese Academy of IT · Warsaw, Poland</div>
+          <div class="cred-year">2018 – 2021</div>
+          <div class="cred-detail">Grade: 4.84 / 5.0 · Conducted in English</div>
+        </div>
+      </div>
+      <div class="cred-half">
+        <div class="cred-body">
+          <div class="cred-accent">Exhibition</div>
+          <div class="cred-title">Palais de la Porte Dorée, Paris</div>
+          <div class="cred-company">Musée National de l'Histoire de l'Immigration</div>
+          <div class="cred-year">2019</div>
+          <div class="cred-detail">The Civic City / Inscriptions · International exhibition</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+ </div>
+</div>
+
+<!-- ═══ CONTACT — DARK ═══ -->
+<div class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div>
+      <h2 class="contact-heading">Let's work<br><em>together.</em></h2>
+      <p class="contact-sub">Open to senior in-house roles, design consultancy partnerships, and long-term freelance or retainer engagements — particularly within Europe.</p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:manchanda.arnit@gmail.com" class="contact-link">
+        <span class="lbl">Email</span>manchanda.arnit@gmail.com
+      </a>
+      <a href="https://linkedin.com/in/arnitkaurmanchanda" class="contact-link">
+        <span class="lbl">LinkedIn</span>linkedin.com/in/arnitkaurmanchanda
+      </a>
+      <a href="https://behance.net/arnitkmanchan" class="contact-link">
+        <span class="lbl">Behance</span>behance.net/arnitkmanchan
+      </a>
+      <a href="tel:+918448815048" class="contact-link">
+        <span class="lbl">Phone</span>+91 84488 15048
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+ <div class="footer-inner">
+  <span class="footer-name">Arnit Manchanda</span>
+  <div class="footer-links">
+    <a href="#work">Work</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+    <a href="#">CV ↗</a>
+  </div>
+  <span class="footer-copy">© 2026</span>
+ </div>
+</footer>
+
+<script>
+// Nav light/dark switch based on scroll position
+const nav=document.getElementById('nav');
+const heroBottom=document.querySelector('.works-section');
+function checkNav(){
+  const heroEnd=document.querySelector('.hero').offsetHeight;
+  nav.classList.toggle('light',window.scrollY>heroEnd-30);
+}
+window.addEventListener('scroll',checkNav,{passive:true});
+checkNav();
+
+// Mobile nav
+document.getElementById('burger').addEventListener('click',()=>{
+  document.getElementById('navOverlay').classList.add('open');
+});
+document.getElementById('navClose').addEventListener('click',closeNav);
+function closeNav(){document.getElementById('navOverlay').classList.remove('open');}
+
+// Hover thumbnail
+const tf=document.getElementById('thumbFloat');
+const ti=document.getElementById('thumbImg');
+let mx=0,my=0,vis=false,raf=null;
+
+function posThumb(){
+  const m=20,tw=tf.offsetWidth,th=tf.offsetHeight;
+  let tx=mx+32,ty=my-th/2;
+  if(tx+tw>window.innerWidth-m)tx=mx-tw-32;
+  if(ty<m)ty=m;
+  if(ty+th>window.innerHeight-m)ty=window.innerHeight-th-m;
+  tf.style.left=tx+'px';
+  tf.style.top=ty+'px';
+}
+
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  if(vis){cancelAnimationFrame(raf);raf=requestAnimationFrame(posThumb);}
+},{passive:true});
+
+document.querySelectorAll('.proj-row[data-thumb]').forEach(row=>{
+  row.addEventListener('mouseenter',()=>{
+    if(window.innerWidth<960)return;
+    ti.src=row.dataset.thumb;
+    tf.classList.add('on');
+    vis=true;posThumb();
+  });
+  row.addEventListener('mouseleave',()=>{
+    tf.classList.remove('on');vis=false;
+  });
+});
+</script>
+</body>
+</html>

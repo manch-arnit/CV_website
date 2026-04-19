@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Arnit Manchanda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+:root{
+  --paper:     #F5F1EB;
+  --ink:       #1C1917;
+  --mid:       #57534E;
+  --soft:      #A8A29E;
+  --rule:      #DDD8D1;
+  --hover:     #EDE9E2;
+  --accent:    #B84A2C;
+  --accentlt:  #EDD9D3;
+  --dark:      #141210;
+  --mid-dark:  #252220;
+  --mid-dark-rule:#302D2A;
+  --mid-dark-mid: #7A7672;
+  --dark-mid:  #6B6763;
+  --dark-soft: #3A3735;
+  --dark-rule: #2E2B28;
+  --serif:     'DM Serif Display',Georgia,serif;
+  --sans:      'DM Sans',sans-serif;
+  --max:       1280px;
+  --pad:       clamp(24px,5vw,64px);
+}
+
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-weight:300;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* ── NAV — starts dark, turns light after hero ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:54px;
+  background:var(--dark);
+  border-bottom:1px solid var(--dark-rule);
+  transition:background 0.4s,border-color 0.4s;
+}
+nav.light{background:var(--paper);border-bottom-color:var(--rule);}
+.nav-inner{
+  max-width:var(--max);margin:0 auto;
+  height:100%;padding:0 var(--pad);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo{
+  font-family:var(--serif);font-size:15px;letter-spacing:-0.3px;
+  color:var(--paper);text-decoration:none;transition:color 0.3s;
+}
+.nav-logo em{font-style:italic;color:var(--accent);}
+nav.light .nav-logo{color:var(--ink);}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
+.nav-links a{
+  font-size:10.5px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--dark-mid);text-decoration:none;transition:color 0.2s;
+}
+nav.light .nav-links a{color:var(--mid);}
+.nav-links a:hover,
+nav.light .nav-links a:hover{color:var(--accent);}
+.nav-links a.active{color:var(--accent);}
+.nav-cv{
+  font-size:10.5px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--accent);text-decoration:none;
+  border-bottom:1px solid rgba(184,74,44,0.35);padding-bottom:1px;
+  transition:border-color 0.2s,font-weight 0.1s;
+}
+.nav-cv:hover{border-color:var(--accent);font-weight:700;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--paper);transition:background 0.3s;}
+nav.light .hamburger span{background:var(--ink);}
+
+/* Mobile overlay */
+.nav-overlay{
+  display:none;position:fixed;inset:0;
+  background:var(--dark);z-index:99;
+  flex-direction:column;align-items:center;justify-content:center;gap:32px;
+}
+.nav-overlay.open{display:flex;}
+.nav-overlay a{
+  font-family:var(--serif);font-size:36px;color:var(--paper);
+  text-decoration:none;font-style:italic;transition:color 0.2s;
+}
+.nav-overlay a:hover{color:var(--accent);}
+.overlay-close{
+  position:absolute;top:16px;right:var(--pad);
+  font-size:28px;cursor:pointer;color:var(--dark-mid);
+  background:none;border:none;line-height:1;
+}
+
+/* ─────────────────────────────────────────────
+   HERO — dark, minimal, page-specific
+───────────────────────────────────────────── */
+.hero{
+  background:var(--dark);
+  padding-top:54px;
+}
+.hero-inner{
+  max-width:var(--max);margin:0 auto;padding:0 var(--pad);
+  padding-top:clamp(52px,8vw,108px);
+  padding-bottom:clamp(48px,7vw,88px);
+}
+.hero-eyebrow{
+  font-size:9px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:clamp(18px,3vw,28px);
+  display:flex;align-items:center;gap:12px;
+  opacity:0;animation:rise 0.8s ease 0.1s forwards;
+}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--accent);flex-shrink:0;}
+
+/* Two-col hero — name left, statement right */
+.hero-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(32px,5vw,80px);
+  align-items:end;
+  opacity:0;animation:rise 0.9s ease 0.25s forwards;
+}
+.hero-name{
+  font-family:var(--serif);
+  font-size:clamp(52px,8vw,112px);
+  line-height:0.91;letter-spacing:-0.03em;
+  color:var(--paper);
+}
+.hero-name em{font-style:italic;color:var(--accent);display:block;}
+
+.hero-right{padding-bottom:6px;}
+.hero-tagline{
+  font-size:clamp(15px,2vw,20px);
+  line-height:1.55;
+  color:var(--dark-mid);
+  font-weight:300;
+  letter-spacing:-0.01em;
+  margin-bottom:28px;
+}
+.hero-tagline em{font-style:italic;color:var(--paper);font-weight:300;}
+.hero-tagline strong{color:var(--paper);font-weight:400;}
+
+.hero-meta{
+  display:flex;gap:0;justify-content:space-between;
+  padding-top:24px;
+  border-top:1px solid var(--dark-rule);
+}
+.hero-meta-item{
+  font-size:9px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--dark-mid);
+}
+.hero-meta-item span{color:var(--accent);}
+
+/* ─────────────────────────────────────────────
+   BIO SECTION — paper, two columns
+───────────────────────────────────────────── */
+.bio-section{
+  background:var(--paper);
+  border-top:1px solid var(--rule);
+}
+.bio-inner{
+  max-width:var(--max);margin:0 auto;padding:0 var(--pad);
+  padding-top:clamp(52px,7vw,88px);
+  padding-bottom:clamp(52px,7vw,88px);
+  display:grid;
+  grid-template-columns:1fr 1.55fr;
+  gap:clamp(40px,6vw,96px);
+  align-items:start;
+}
+.bio-label{
+  font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:20px;
+}
+.bio-pull{
+  font-family:var(--serif);
+  font-size:clamp(22px,3vw,34px);
+  letter-spacing:-0.02em;line-height:1.15;
+  color:var(--ink);
+  position:sticky;top:80px;
+}
+.bio-pull em{font-style:italic;color:var(--accent);}
+
+.bio-body p{
+  font-size:14px;line-height:1.85;
+  color:var(--mid);margin-bottom:22px;
+}
+.bio-body p:last-child{margin-bottom:0;}
+.bio-body strong{color:var(--ink);font-weight:500;}
+
+/* ─────────────────────────────────────────────
+   EXPERIENCE — mid-dark, timeline rows
+───────────────────────────────────────────── */
+.exp-section{
+  background:var(--mid-dark);
+  border-top:1px solid var(--mid-dark-rule);
+  border-bottom:1px solid var(--mid-dark-rule);
+}
+.exp-inner{
+  max-width:var(--max);margin:0 auto;padding:0 var(--pad);
+  padding-top:clamp(52px,7vw,88px);
+  padding-bottom:clamp(52px,7vw,88px);
+}
+.section-label{
+  font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:clamp(28px,4vw,48px);
+}
+
+/* Job row */
+.job{
+  display:grid;
+  grid-template-columns:clamp(120px,16vw,200px) 1fr;
+  gap:0 clamp(24px,4vw,64px);
+  padding:clamp(24px,3.5vw,40px) 0;
+  border-top:1px solid var(--mid-dark-rule);
+  align-items:start;
+}
+.job:last-child{border-bottom:1px solid var(--mid-dark-rule);}
+
+.job-left{}
+.job-dates{
+  font-family:var(--serif);font-size:12px;font-style:italic;
+  color:var(--dark-mid);white-space:nowrap;margin-bottom:5px;
+}
+.job-location{
+  font-size:10px;color:var(--mid-dark-mid);font-weight:400;letter-spacing:0.04em;
+  white-space:nowrap;line-height:1.5;
+}
+
+.job-right{}
+.job-co{
+  font-family:var(--serif);
+  font-size:clamp(20px,2.8vw,30px);
+  letter-spacing:-0.02em;line-height:1.05;
+  color:var(--paper);
+  margin-bottom:6px;
+}
+.job-title{
+  font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:12px;
+}
+.job-promo{
+  display:inline-block;
+  font-size:8.5px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--accent);
+  border:1px solid rgba(184,74,44,0.35);
+  padding:3px 9px;border-radius:2px;
+  margin-bottom:14px;
+}
+.job-desc{
+  font-size:12.5px;line-height:1.78;
+  color:var(--mid-dark-mid);
+  margin-bottom:16px;
+  max-width:640px;
+}
+.job-tags{display:flex;flex-wrap:wrap;gap:4px;}
+.job-tag{
+  font-size:7.5px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--mid-dark-mid);background:rgba(237,217,211,0.1);
+  padding:2px 8px;border-radius:2px;
+  border:1px solid rgba(237,217,211,0.15);
+}
+
+/* ─────────────────────────────────────────────
+   RECOGNITION + EDUCATION — paper, side by side
+───────────────────────────────────────────── */
+.recog-section{
+  background:var(--paper);
+  border-top:1px solid var(--rule);
+}
+.recog-inner{
+  max-width:var(--max);margin:0 auto;padding:0 var(--pad);
+  padding-top:clamp(52px,7vw,88px);
+  padding-bottom:clamp(52px,7vw,88px);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(32px,5vw,80px);
+  align-items:start;
+}
+
+/* Award card */
+.award-card{
+  background:var(--ink);
+  padding:clamp(24px,3vw,40px);
+  margin-bottom:24px;
+  position:relative;
+  overflow:hidden;
+}
+.award-card::before{
+  content:'';
+  position:absolute;top:0;left:0;width:4px;height:100%;
+  background:var(--accent);
+}
+.award-org{
+  font-size:8px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--accentlt);margin-bottom:12px;
+}
+.award-name{
+  font-family:var(--serif);
+  font-size:clamp(22px,2.6vw,32px);
+  font-style:italic;
+  color:var(--paper);
+  line-height:1.1;margin-bottom:12px;
+  letter-spacing:-0.02em;
+  white-space:nowrap;
+}
+.award-desc{
+  font-size:11.5px;line-height:1.7;
+  color:var(--dark-mid);
+}
+
+/* Exhibition item */
+.exhibit{
+  display:flex;gap:16px;
+  padding:clamp(20px,2.5vw,28px) 0;
+  border-top:1px solid var(--rule);
+}
+.exhibit:first-of-type{border-top-color:transparent;padding-top:0;}
+.exhibit-bar{
+  width:3px;flex-shrink:0;
+  background:var(--accent);
+  border-radius:2px;
+  align-self:stretch;
+  min-height:40px;
+}
+.exhibit-body{}
+.exhibit-tag{
+  font-size:8px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:6px;
+}
+.exhibit-title{
+  font-family:var(--serif);font-size:clamp(16px,2vw,22px);
+  font-style:italic;color:var(--ink);line-height:1.2;margin-bottom:5px;
+  letter-spacing:-0.01em;
+}
+.exhibit-sub{
+  font-size:11px;color:var(--mid);line-height:1.6;font-weight:300;
+}
+
+/* Education column */
+.edu-block{margin-bottom:28px;}
+.edu-degree{
+  font-family:var(--serif);
+  font-size:clamp(18px,2.4vw,26px);
+  letter-spacing:-0.02em;line-height:1.15;
+  color:var(--ink);margin-bottom:6px;
+}
+.edu-school{
+  font-size:13px;color:var(--mid);font-weight:300;margin-bottom:3px;
+}
+.edu-meta{
+  font-size:10.5px;color:var(--soft);font-style:italic;margin-bottom:10px;
+}
+.edu-grade{
+  display:inline-block;
+  font-size:8px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--accent);
+  border:1px solid var(--accentlt);
+  padding:3px 10px;border-radius:2px;
+}
+
+/* ─────────────────────────────────────────────
+   SKILLS — paper, chip grid
+───────────────────────────────────────────── */
+.skills-section{
+  background:var(--paper);
+  border-top:1px solid var(--rule);
+}
+.skills-inner{
+  max-width:var(--max);margin:0 auto;padding:0 var(--pad);
+  padding-top:clamp(40px,5vw,72px);
+  padding-bottom:clamp(40px,5vw,72px);
+  display:grid;
+  grid-template-columns:clamp(120px,16vw,200px) 1fr;
+  gap:0 clamp(24px,4vw,64px);
+  align-items:start;
+}
+.skills-col{}
+.skills-group{margin-bottom:28px;}
+.skills-group-label{
+  font-size:9px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;
+  color:var(--soft);margin-bottom:10px;
+}
+.chip-row{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{
+  font-size:10.5px;font-weight:400;
+  color:var(--mid);
+  background:var(--accentlt);
+  padding:5px 12px;border-radius:2px;
+  letter-spacing:0.02em;
+  transition:background 0.18s,color 0.18s;
+}
+.chip:hover{background:var(--accent);color:var(--paper);}
+.chip.dark{
+  background:var(--ink);color:var(--soft);
+  font-size:10px;
+}
+.chip.dark:hover{background:var(--accent);color:var(--paper);}
+
+/* Language bars */
+.lang-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:11px 0;border-bottom:1px solid var(--rule);
+}
+.lang-row:first-child{border-top:1px solid var(--rule);}
+.lang-name{font-size:13px;color:var(--ink);}
+.lang-level{
+  font-size:8.5px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--soft);
+}
+.lang-level span{color:var(--accent);}
+
+/* ─────────────────────────────────────────────
+   APPROACH — mid-dark, 3-col principles
+───────────────────────────────────────────── */
+.approach-section{
+  background:var(--mid-dark);
+  border-top:1px solid var(--mid-dark-rule);
+  border-bottom:1px solid var(--mid-dark-rule);
+}
+.approach-inner{
+  max-width:var(--max);margin:0 auto;padding:0 var(--pad);
+  padding-top:clamp(52px,7vw,88px);
+  padding-bottom:clamp(52px,7vw,88px);
+}
+.approach-heading{
+  font-family:var(--serif);
+  font-size:clamp(28px,4vw,48px);
+  letter-spacing:-0.02em;line-height:1.05;
+  color:var(--paper);
+  margin-bottom:clamp(36px,5vw,64px);
+  max-width:640px;
+}
+.approach-heading em{font-style:italic;color:var(--accent);}
+.approach-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:0;
+}
+.approach-item{
+  padding:clamp(24px,3vw,36px) clamp(20px,3vw,40px);
+  border-left:1px solid var(--mid-dark-rule);
+}
+.approach-item:first-child{border-left:none;padding-left:0;}
+.approach-num{
+  font-family:var(--serif);font-size:11px;font-style:italic;
+  color:var(--dark-soft);display:block;margin-bottom:12px;
+}
+.approach-title{
+  font-family:var(--serif);font-size:clamp(17px,2.2vw,22px);
+  color:var(--paper);margin-bottom:10px;letter-spacing:-0.01em;
+  line-height:1.2;
+}
+.approach-title em{font-style:italic;color:var(--accent);}
+.approach-body{
+  font-size:12px;line-height:1.8;color:var(--mid-dark-mid);
+}
+
+/* ─────────────────────────────────────────────
+   CONTACT SECTION — dark (same as /)
+───────────────────────────────────────────── */
+.contact-section{background:var(--dark);}
+.contact-inner{
+  max-width:var(--max);margin:0 auto;
+  padding:clamp(52px,7vw,96px) var(--pad);
+  display:flex;justify-content:space-between;align-items:flex-end;
+  gap:40px;flex-wrap:wrap;
+}
+.contact-heading{
+  font-family:var(--serif);
+  font-size:clamp(36px,5.5vw,68px);
+  letter-spacing:-0.03em;line-height:0.93;
+  color:var(--paper);margin-bottom:18px;
+}
+.contact-heading em{font-style:italic;color:var(--accent);}
+.contact-sub{
+  font-size:13px;color:var(--dark-mid);line-height:1.75;max-width:380px;
+}
+.contact-links{display:flex;flex-direction:column;gap:12px;align-items:flex-end;}
+.contact-link{
+  display:flex;align-items:center;gap:12px;
+  font-size:11.5px;color:var(--dark-mid);text-decoration:none;transition:color 0.2s;
+}
+.contact-link:hover{color:var(--accent);}
+.contact-link .lbl{
+  font-size:8px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--dark-soft);width:52px;text-align:right;
+}
+
+/* Footer */
+footer{background:var(--dark);border-top:1px solid var(--dark-rule);}
+.footer-inner{
+  max-width:var(--max);margin:0 auto;
+  padding:20px var(--pad);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+}
+.footer-name{font-family:var(--serif);font-size:12px;font-style:italic;color:var(--dark-mid);}
+.footer-links{display:flex;gap:24px;}
+.footer-links a{
+  font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--dark-soft);text-decoration:none;transition:color 0.2s;
+}
+.footer-links a:hover{color:var(--accentlt);}
+.footer-copy{font-size:9px;color:var(--dark-soft);}
+
+/* Animations */
+@keyframes rise{
+  from{opacity:0;transform:translateY(16px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.reveal{
+  opacity:0;transform:translateY(20px);
+  transition:opacity 0.7s ease,transform 0.7s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-name{font-size:clamp(52px,12vw,88px);}
+  .hero-meta{justify-content:flex-start;gap:20px;flex-wrap:wrap;}
+  .bio-inner{grid-template-columns:1fr;}
+  .bio-pull{position:static;font-size:clamp(20px,4.5vw,28px);margin-bottom:28px;}
+  .job{grid-template-columns:1fr;}
+  .job-left{display:flex;gap:20px;align-items:baseline;margin-bottom:8px;}
+  .recog-inner{
+    grid-template-columns:1fr;
+    gap:0;
+  }
+  /* Each top-level child of recog-inner gets equal vertical padding */
+  .recog-inner > *{
+    padding-top:clamp(36px,5vw,56px);
+    padding-bottom:clamp(36px,5vw,56px);
+    border-bottom:1px solid var(--rule);
+  }
+  .recog-inner > *:last-child{border-bottom:none;padding-bottom:0;}
+  /* Award card already has its own margin-bottom — flatten it on mobile */
+  .award-card{margin-bottom:28px;}
+  /* EU connection paragraph inside the right column */
+  .recog-inner > div > div[style]{margin-top:28px!important;}
+  .approach-grid{grid-template-columns:1fr;}
+  .approach-item{border-left:none;padding-left:0;border-top:1px solid var(--mid-dark-rule);}
+  .approach-item:first-child{border-top:none;}
+  .skills-inner{grid-template-columns:1fr;}
+  .contact-inner{flex-direction:column;align-items:flex-start;}
+  .contact-links{align-items:flex-start;}
+  .contact-link .lbl{text-align:left;}
+}
+@media(max-width:600px){
+  .nav-links,.nav-cv{display:none;}
+  .hamburger{display:flex;}
+  .hero-meta{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- Mobile overlay -->
+<div class="nav-overlay" id="navOverlay">
+  <button class="overlay-close" id="navClose">×</button>
+  <a href="/" onclick="closeNav()">Work</a>
+  <a href="/about" onclick="closeNav()">About</a>
+  <a href="/contact" onclick="closeNav()">Contact</a>
+</div>
+
+<!-- Nav -->
+<nav id="nav">
+ <div class="nav-inner">
+  <a href="/" class="nav-logo">Arnit <em>Manchanda</em></a>
+  <ul class="nav-links">
+    <li><a href="/work">Work</a></li>
+    <li><a href="/about" class="active">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+  <a href="#" class="nav-cv">CV ↗</a>
+  <div class="hamburger" id="burger"><span></span><span></span><span></span></div>
+ </div>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     HERO — Dark
+════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">About</div>
+    <div class="hero-grid">
+      <h1 class="hero-name">
+        Arnit<br><em>Manchanda</em>
+      </h1>
+      <div class="hero-right">
+        <p class="hero-tagline">I design for <em>understanding,</em> not just visibility. Six years building visual systems, brand identities, and research communication for <strong>Fortune 500 clients</strong> — through US and UK enterprise teams.</p>
+        <div class="hero-meta">
+          <div class="hero-meta-item">India <span>·</span> Open to EU</div>
+          <div class="hero-meta-item">6+ Years</div>
+          <div class="hero-meta-item">300+ Projects</div>
+          <div class="hero-meta-item">Fortune 500</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     BIO — Paper
+════════════════════════════════════════ -->
+<section class="bio-section">
+  <div class="bio-inner">
+
+    <div class="bio-left">
+      <div class="bio-label">The story</div>
+      <h2 class="bio-pull reveal">
+        Context.<br><em>Clarity.</em><br>Impact.
+      </h2>
+    </div>
+
+    <div class="bio-body reveal">
+      <p>
+        I'm Arnit Manchanda — a <strong>Senior Visual &amp; Brand Designer</strong> based in Delhi, India, with 6+ years of experience building visual systems, brand identities, editorial frameworks, and research communication for some of the world's most recognised companies. I work at the intersection of information design, brand thinking, and editorial craft — translating complex ideas into clear, structured systems that help people understand and decide.
+      </p>
+      <p>
+        Currently at <strong>Material</strong>, a US and UK-based enterprise design consultancy, I've owned end-to-end design across <strong>300+ projects</strong> for 20+ Fortune 500 clients spanning SaaS, tech, FMCG, healthcare, entertainment, film, fashion, consulting, and security. Before that I spent two years at <strong>UpGrad Enterprise</strong> — India's largest EdTech platform — where I was promoted from Visual Artist to Senior Editorial Lead within 12 months.
+      </p>
+      <p>
+        My background is international by design. I studied <strong>New Media Arts at the Polish-Japanese Academy of IT in Warsaw</strong> (2018–2021, grade 4.84/5), worked in an EU corporate environment in Poland, and have spent my career embedded within American and British teams and clients. An academic information design research project — <em>The Civic City / Inscriptions</em> — was exhibited at <strong>Palais de la Porte Dorée in Paris</strong>. I'm not relocating cold: I'm returning to a professional context I know.
+      </p>
+      <p>
+        I'm actively seeking <strong>senior design roles, agency partnerships, and long-term freelance or retainer engagements in Europe</strong> — where I can bring Fortune 500-tested design thinking, international fluency, and a deep commitment to design that earns its place on the page.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     EXPERIENCE — Mid-dark
+════════════════════════════════════════ -->
+<section class="exp-section">
+  <div class="exp-inner">
+    <div class="section-label reveal">Experience</div>
+
+    <!-- Material -->
+    <div class="job reveal">
+      <div class="job-left">
+        <div class="job-dates">Dec 2023 – Present</div>
+        <div class="job-location">Remote, India · US &amp; UK</div>
+      </div>
+      <div class="job-right">
+        <div class="job-co">Material</div>
+        <div class="job-title">Senior Information Designer — Strategy &amp; Insights</div>
+        <div class="job-desc">
+          US and UK-based enterprise design consultancy delivering research communication and visual systems for Fortune 500 clients. Owned end-to-end design across 300+ projects for 20+ global brands — translating complex strategic and data-heavy content into clear visual narratives for executive audiences. Redesigned modular template frameworks, cutting turnaround by 25–35%. Achieved 90% new-client conversion on pitch and credentials deck design. Awarded the <strong style="color:var(--paper);font-weight:500;">Unity Value Award</strong> in first year.
+        </div>
+        <div class="job-tags">
+          <span class="job-tag">SaaS</span>
+          <span class="job-tag">Tech</span>
+          <span class="job-tag">FMCG</span>
+          <span class="job-tag">Healthcare</span>
+          <span class="job-tag">Entertainment</span>
+          <span class="job-tag">Film</span>
+          <span class="job-tag">Fashion</span>
+          <span class="job-tag">Security</span>
+          <span class="job-tag">Consulting</span>
+          <span class="job-tag">Finance</span>
+          <span class="job-tag">Gaming</span>
+          <span class="job-tag">Streaming</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- UpGrad -->
+    <div class="job reveal">
+      <div class="job-left">
+        <div class="job-dates">Oct 2021 – Dec 2023</div>
+        <div class="job-location">Delhi, India · US &amp; India</div>
+      </div>
+      <div class="job-right">
+        <div class="job-co">UpGrad Enterprise</div>
+        <div class="job-title">Senior Visual Storyteller &amp; Editorial Lead</div>
+        <div class="job-promo">↑ Promoted within 12 months</div>
+        <div class="job-desc">
+          One of India's largest EdTech platforms. Directed editorial design systems for long-form digital learning across 10+ modules, improving learner comprehension scores. Led brand refresh, translating guidelines into 50+ live assets across B2B and B2C channels. Integrated motion design and interactive infographics achieving 20% higher engagement vs static equivalents. Built scalable social media design systems via A/B experimentation.
+        </div>
+        <div class="job-tags">
+          <span class="job-tag">EdTech</span>
+          <span class="job-tag">Education</span>
+          <span class="job-tag">Digital Learning</span>
+          <span class="job-tag">Brand Comms</span>
+          <span class="job-tag">Editorial</span>
+          <span class="job-tag">Motion</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Freelance -->
+    <div class="job reveal">
+      <div class="job-left">
+        <div class="job-dates">Jan 2020 – Present</div>
+        <div class="job-location">Parallel to full-time roles</div>
+      </div>
+      <div class="job-right">
+        <div class="job-co">Freelance</div>
+        <div class="job-title">Design Consultant — Branding · Motion · Digital</div>
+        <div class="job-desc">
+          Led 8+ multi-phase projects end-to-end for 20+ clients across F&amp;B, hospitality, government, education, real estate, wellness, FMCG, and renewable energy — managing teams of 3–5. Improved audience engagement by 20–25% through stronger hierarchy and narrative structure.
+        </div>
+        <div class="job-tags">
+          <span class="job-tag">F&amp;B</span>
+          <span class="job-tag">Hospitality</span>
+          <span class="job-tag">Government</span>
+          <span class="job-tag">Real Estate</span>
+          <span class="job-tag">Wellness</span>
+          <span class="job-tag">Renewable Energy</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sub Restaurants -->
+    <div class="job reveal">
+      <div class="job-left">
+        <div class="job-dates">Jan 2020 – May 2021</div>
+        <div class="job-location">Warsaw, Poland · EU</div>
+      </div>
+      <div class="job-right">
+        <div class="job-co">Sub Restaurants (EU)</div>
+        <div class="job-title">Marketing &amp; Communication Assistant</div>
+        <div class="job-desc">
+          Standardised internal communications and training materials within a fast-moving EU corporate restaurant operation in Warsaw — laying the foundation for working within European professional environments and multicultural teams.
+        </div>
+        <div class="job-tags">
+          <span class="job-tag">F&amp;B</span>
+          <span class="job-tag">EU Corporate</span>
+          <span class="job-tag">Warsaw</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     RECOGNITION + EDUCATION — Paper
+════════════════════════════════════════ -->
+<section class="recog-section">
+  <div class="recog-inner">
+
+    <!-- Left: Recognition -->
+    <div class="reveal">
+      <div class="bio-label">Recognition</div>
+
+      <div class="award-card">
+        <div class="award-org">Material · 2024</div>
+        <div class="award-name">Unity Value<br>Award</div>
+        <div class="award-desc">Awarded in first year for outstanding contribution to design practice and team culture — recognising both the quality of the work and the impact on the people around it.</div>
+      </div>
+
+      <div style="margin-top:24px;">
+        <div class="bio-label">Exhibition</div>
+        <div class="exhibit">
+          <div class="exhibit-bar"></div>
+          <div class="exhibit-body">
+            <div class="exhibit-tag">International Exhibition · Paris · 2019</div>
+            <div class="exhibit-title">The Civic City / Inscriptions</div>
+            <div class="exhibit-sub">Information design research translating Warsaw's civic time and urban identity into structured visual narratives — exhibited at Palais de la Porte Dorée, Musée National de l'Histoire de l'Immigration, Paris.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Education -->
+    <div class="reveal">
+      <div class="bio-label">Education</div>
+
+      <div class="edu-block">
+        <div class="edu-degree">BA New Media Arts<br>First Class</div>
+        <div class="edu-school">Polish-Japanese Academy of Information Technology</div>
+        <div class="edu-meta">Warsaw, Poland · 2018–2021 · Conducted in English</div>
+        <div class="edu-grade">Grade: 4.84 / 5.0</div>
+      </div>
+
+      <div style="margin-top:36px;">
+        <div class="bio-label">The EU connection</div>
+        <p style="font-size:13px;line-height:1.8;color:var(--mid);font-weight:300;max-width:480px;">
+          Three years studying and living in Warsaw. One year working in an EU corporate environment in Poland. A career embedded within US and UK organisations. Work exhibited in Paris. I'm not relocating cold — I'm returning to professional and cultural contexts I already know.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SKILLS — Paper, constrained grid
+════════════════════════════════════════ -->
+<section class="skills-section">
+  <div class="skills-inner">
+
+    <div>
+      <div class="bio-label reveal">Craft &amp; Tools</div>
+    </div>
+
+    <div class="reveal">
+      <div class="skills-group">
+        <div class="skills-group-label">Design Disciplines</div>
+        <div class="chip-row">
+          <span class="chip">Information Design</span>
+          <span class="chip">Brand Identity</span>
+          <span class="chip">Editorial Design</span>
+          <span class="chip">Research Communication</span>
+          <span class="chip">Data Visualisation</span>
+          <span class="chip">Design Systems</span>
+          <span class="chip">Pitch &amp; Presentation</span>
+          <span class="chip">Motion Design</span>
+          <span class="chip">Publication Design</span>
+          <span class="chip">Brand Illustration</span>
+        </div>
+      </div>
+
+      <div class="skills-group">
+        <div class="skills-group-label">Software</div>
+        <div class="chip-row">
+          <span class="chip dark">Figma</span>
+          <span class="chip dark">Illustrator</span>
+          <span class="chip dark">InDesign</span>
+          <span class="chip dark">Photoshop</span>
+          <span class="chip dark">After Effects</span>
+          <span class="chip dark">Premiere Pro</span>
+          <span class="chip dark">PowerPoint</span>
+          <span class="chip dark">Keynote</span>
+          <span class="chip dark">Procreate</span>
+        </div>
+      </div>
+
+      <div class="skills-group">
+        <div class="skills-group-label">AI Tools</div>
+        <div class="chip-row">
+          <span class="chip dark">Adobe Firefly</span>
+          <span class="chip dark">Midjourney</span>
+          <span class="chip dark">ChatGPT</span>
+          <span class="chip dark">Gemini</span>
+          <span class="chip dark">Google AI Studio</span>
+          <span class="chip dark">NotebookLM</span>
+        </div>
+      </div>
+
+      <div class="skills-group" style="margin-bottom:0;">
+        <div class="skills-group-label">Languages</div>
+        <div class="lang-row">
+          <span class="lang-name">English</span>
+          <span class="lang-level"><span>C1</span> — Fluent</span>
+        </div>
+        <div class="lang-row">
+          <span class="lang-name">Hindi</span>
+          <span class="lang-level"><span>C1</span> — Native</span>
+        </div>
+        <div class="lang-row">
+          <span class="lang-name">Spanish</span>
+          <span class="lang-level"><span>A1</span> — Learning</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     APPROACH — Mid-dark, 3 principles
+════════════════════════════════════════ -->
+<section class="approach-section">
+  <div class="approach-inner">
+    <h2 class="approach-heading reveal">
+      Three lenses.<br><em>Every project.</em>
+    </h2>
+    <div class="approach-grid">
+      <div class="approach-item reveal">
+        <span class="approach-num">01</span>
+        <div class="approach-title"><em>Context</em> first</div>
+        <p class="approach-body">
+          Every project starts with the problem, not the deliverable. Who needs to understand what, and why does clarity matter here? The best design decisions come from deeply understanding the audience, the stakes, and the system the work lives within.
+        </p>
+      </div>
+      <div class="approach-item reveal">
+        <span class="approach-num">02</span>
+        <div class="approach-title">Structure creates <em>clarity</em></div>
+        <p class="approach-body">
+          Complex information doesn't simplify itself — it needs an architecture. I build visual frameworks that impose hierarchy without losing nuance: grids, typographic systems, narrative flows, and data hierarchies that make dense material legible at a glance.
+        </p>
+      </div>
+      <div class="approach-item reveal">
+        <span class="approach-num">03</span>
+        <div class="approach-title">Design for <em>impact</em></div>
+        <p class="approach-body">
+          Good design creates measurable outcomes. A 90% pitch conversion rate. A 35% reduction in production time. 20% higher engagement. I measure success not by how the work looks, but by what it enables the people who see it to do.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     CONTACT — Dark (identical to /)
+════════════════════════════════════════ -->
+<div class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div>
+      <h2 class="contact-heading">Let's work<br><em>together.</em></h2>
+      <p class="contact-sub">Open to senior in-house roles, design consultancy partnerships, and long-term freelance or retainer engagements — particularly within Europe.</p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:manchanda.arnit@gmail.com" class="contact-link">
+        <span class="lbl">Email</span>manchanda.arnit@gmail.com
+      </a>
+      <a href="https://linkedin.com/in/arnitkaurmanchanda" class="contact-link">
+        <span class="lbl">LinkedIn</span>linkedin.com/in/arnitkaurmanchanda
+      </a>
+      <a href="https://behance.net/arnitkmanchan" class="contact-link">
+        <span class="lbl">Behance</span>behance.net/arnitkmanchan
+      </a>
+      <a href="tel:+918448815048" class="contact-link">
+        <span class="lbl">Phone</span>+91 84488 15048
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+ <div class="footer-inner">
+  <span class="footer-name">Arnit Manchanda</span>
+  <div class="footer-links">
+    <a href="/work">Work</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+    <a href="#">CV ↗</a>
+  </div>
+  <span class="footer-copy">© 2026</span>
+ </div>
+</footer>
+
+<script>
+// Nav light/dark switch
+const nav = document.getElementById('nav');
+const hero = document.getElementById('hero');
+function checkNav(){
+  nav.classList.toggle('light', window.scrollY > hero.offsetHeight - 30);
+}
+window.addEventListener('scroll', checkNav, {passive:true});
+checkNav();
+
+// Mobile nav
+document.getElementById('burger').addEventListener('click', () => {
+  document.getElementById('navOverlay').classList.add('open');
+});
+document.getElementById('navClose').addEventListener('click', closeNav);
+function closeNav(){ document.getElementById('navOverlay').classList.remove('open'); }
+
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
