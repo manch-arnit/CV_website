@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arnit Manchanda — Senior Visual & Brand Designer</title>
+<link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
@@ -41,6 +42,7 @@ body{
   font-weight:300;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
+  text-wrap:pretty;
 }
 
 /* ── NAV ── */
@@ -115,6 +117,7 @@ nav.light .hamburger span{background:var(--ink);}
   opacity:0;animation:rise 0.9s ease 0.2s forwards;
 }
 .hero-name em{font-style:italic;color:var(--accent);display:block;}
+.hero-name,.about-heading,.contact-heading,.proj-title{text-wrap:balance;}
 
 /* Disciplines + meta row */
 .hero-bottom{
@@ -161,15 +164,7 @@ nav.light .hamburger span{background:var(--ink);}
   opacity:0;animation:rise 0.9s ease 0.5s forwards;
 }
 /* Rule below stats — matches hero-bottom border exactly (inset by --pad) */
-.stats-rule{
-  position:relative;
-  max-width:var(--max);margin:0 auto;
-  padding:0 var(--pad);
-}
-.stats-rule::after{
-  content:'';display:block;
-  border-top:1px solid var(--dark-rule);
-}
+.stats-rule{display:none;}
 .stat{
   padding:clamp(16px,2.8vw,28px) clamp(12px,2vw,24px);
   border-right:1px solid var(--dark-rule);
@@ -348,7 +343,7 @@ nav.light .hamburger span{background:var(--ink);}
   transition:color 0.2s,border-color 0.2s;
 }
 .cta:hover{color:var(--accent);border-color:var(--accent);}
-.cta::after{content:'→';font-size:13px;}
+.cta::after{content:none;}
 
 /* Credentials — paired layout */
 .creds{}
@@ -435,7 +430,7 @@ nav.light .hamburger span{background:var(--ink);}
 }
 .contact-heading em{font-style:italic;color:var(--accent);}
 .contact-sub{
-  font-size:13px;color:var(--dark-mid);line-height:1.75;max-width:380px;
+  font-size:13px;color:var(--dark-mid);line-height:1.75;max-width:560px;
 }
 .contact-links{display:flex;flex-direction:column;gap:12px;align-items:flex-end;}
 .contact-link{
@@ -478,6 +473,13 @@ footer{
   .proj-row{grid-template-columns:44px 1fr 160px 50px;}
 }
 @media(max-width:960px){
+  .hero-bottom{align-items:flex-start;}
+  .hero-meta{
+    text-align:left;
+    width:100%;
+    flex-basis:100%;
+  }
+  .avail{margin-top:10px;}
   .stats-inner{grid-template-columns:repeat(2,1fr);}
   .stat:nth-child(2){border-right:none;padding-right:0;}
   .stat:nth-child(3){padding-left:0;}
@@ -507,7 +509,7 @@ footer{
 @media(max-width:600px){
   .nav-links,.nav-cv{display:none;}
   .hamburger{display:flex;}
-  .hero-meta{display:none;}
+  .hero-meta{display:block;text-align:left;}
   .disc-list{flex-direction:row;flex-wrap:wrap;gap:0 16px;}
 }
 
@@ -589,6 +591,14 @@ footer{
   0%{transform:translateX(0);}
   100%{transform:translateX(-50%);}
 }
+
+.icon{width:1em;height:1em;display:inline-block;vertical-align:-0.12em;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.nav-cv,.footer-links a{display:inline-flex;align-items:center;gap:4px;}
+.link-arrow{display:inline-flex;align-items:center;justify-content:flex-end;}
+.overlay-close{display:inline-flex;align-items:center;justify-content:center;}
+.overlay-close .icon{width:22px;height:22px;}
+.nav-dir .icon{width:13px;height:13px;}
+
 </style>
 </head>
 <body>
@@ -598,7 +608,7 @@ footer{
 
 <!-- Mobile overlay -->
 <div class="nav-overlay" id="navOverlay">
-  <button class="overlay-close" id="navClose">×</button>
+  <button class="overlay-close" id="navClose" aria-label="Close menu"><svg class="icon icon-close" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4L12 12"/><path d="M12 4L4 12"/></svg></button>
   <a href="/work" onclick="closeNav()">Work</a>
   <a href="/about" onclick="closeNav()">About</a>
   <a href="/contact" onclick="closeNav()">Contact</a>
@@ -613,7 +623,7 @@ footer{
       <li><a href="/about">About</a></li>
       <li><a href="/contact">Contact</a></li>
     </ul>
-    <a href="#" class="nav-cv">CV ↗</a>
+    <a href="Arnit%20Manchanda_CV.pdf" class="nav-cv" target="_blank" rel="noopener">CV <svg class="icon icon-external" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4H12V10"/><path d="M12 4L5 11"/></svg></a>
     <div class="hamburger" id="burger"><span></span><span></span><span></span></div>
   </div>
 </nav>
@@ -870,7 +880,7 @@ footer{
       I build visual systems that make complex ideas land — across brand identity, information design, editorial design, and research communication. For the past <strong>6+ years</strong> I've worked with some of the world's most recognised brands across entertainment, tech, SaaS, FMCG, healthcare, fashion, and consulting.<br><br>
       My background is international by nature. I studied in <strong>Warsaw</strong>, worked in an EU corporate environment in Poland, and have spent my career embedded within US and UK organisations. Actively seeking senior design roles and long-term partnerships in <strong>Europe</strong>.
     </p>
-    <a href="/about" class="cta">Read more about me</a>
+    <a href="/about" class="cta">Read more about me <svg class="icon icon-arrow-right" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3L11 8L6 13"/><path d="M2 8H11"/></svg></a>
   </div>
   <div class="creds">
 
@@ -951,7 +961,7 @@ footer{
   <div class="contact-inner">
     <div>
       <h2 class="contact-heading">Let's work<br><em>together.</em></h2>
-      <p class="contact-sub">Open to senior in-house roles, design consultancy partnerships, and long-term freelance or retainer<br>engagements — particularly within Europe.</p>
+      <p class="contact-sub">Open to senior in-house roles, design consultancy partnerships,<br>and long-term freelance or retainer engagements<br>— particularly within Europe.</p>
     </div>
     <div class="contact-links">
       <a href="mailto:manchanda.arnit@gmail.com" class="contact-link">
@@ -978,7 +988,7 @@ footer{
     <a href="#work">Work</a>
     <a href="/about">About</a>
     <a href="/contact">Contact</a>
-    <a href="#">CV ↗</a>
+    <a href="Arnit%20Manchanda_CV.pdf" target="_blank" rel="noopener">CV <svg class="icon icon-external" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4H12V10"/><path d="M12 4L5 11"/></svg></a>
   </div>
   <span class="footer-copy">© 2026</span>
  </div>
