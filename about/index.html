@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About — Arnit Manchanda</title>
+<link rel="icon" type="image/png" href="../favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
@@ -144,7 +145,11 @@ nav.light .hamburger span{background:var(--ink);}
   font-weight:300;
   letter-spacing:-0.01em;
   margin-bottom:28px;
+  text-wrap:pretty;
 }
+.hero-name,.hero-tagline,.bio-pull,.contact-heading{text-wrap:balance;}
+.desktop-break{display:inline;}
+.story-break{display:inline;}
 .hero-tagline em{font-style:italic;color:var(--paper);font-weight:300;}
 .hero-tagline strong{color:var(--paper);font-weight:400;}
 
@@ -194,6 +199,7 @@ nav.light .hamburger span{background:var(--ink);}
 }
 .bio-body p:last-child{margin-bottom:0;}
 .bio-body strong{color:var(--ink);font-weight:500;}
+.nobr{white-space:nowrap;}
 
 /* ─────────────────────────────────────────────
    EXPERIENCE — mid-dark, timeline rows
@@ -281,15 +287,25 @@ nav.light .hamburger span{background:var(--ink);}
   padding-bottom:clamp(52px,7vw,88px);
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:clamp(32px,5vw,80px);
+  column-gap:clamp(32px,5vw,80px);
+  row-gap:clamp(22px,3vw,34px);
   align-items:start;
+}
+.recog-block{
+  display:flex;
+  flex-direction:column;
+}
+.recog-block .bio-label{margin-bottom:18px;}
+.recog-block:nth-child(n+3){
+  border-top:1px solid var(--rule);
+  padding-top:clamp(18px,2.5vw,26px);
 }
 
 /* Award card */
 .award-card{
   background:var(--ink);
-  padding:clamp(24px,3vw,40px);
-  margin-bottom:24px;
+  padding:clamp(22px,2.8vw,34px);
+  margin-bottom:0;
   position:relative;
   overflow:hidden;
 }
@@ -319,10 +335,8 @@ nav.light .hamburger span{background:var(--ink);}
 /* Exhibition item */
 .exhibit{
   display:flex;gap:16px;
-  padding:clamp(20px,2.5vw,28px) 0;
-  border-top:1px solid var(--rule);
+  padding:0;
 }
-.exhibit:first-of-type{border-top-color:transparent;padding-top:0;}
 .exhibit-bar{
   width:3px;flex-shrink:0;
   background:var(--accent);
@@ -345,7 +359,7 @@ nav.light .hamburger span{background:var(--ink);}
 }
 
 /* Education column */
-.edu-block{margin-bottom:28px;}
+.edu-block{margin-bottom:0;}
 .edu-degree{
   font-family:var(--serif);
   font-size:clamp(18px,2.4vw,26px);
@@ -364,6 +378,13 @@ nav.light .hamburger span{background:var(--ink);}
   color:var(--accent);
   border:1px solid var(--accentlt);
   padding:3px 10px;border-radius:2px;
+}
+.eu-copy{
+  font-size:13px;
+  line-height:1.8;
+  color:var(--mid);
+  font-weight:300;
+  max-width:480px;
 }
 
 /* ─────────────────────────────────────────────
@@ -400,7 +421,7 @@ nav.light .hamburger span{background:var(--ink);}
 .chip:hover{background:var(--accent);color:var(--paper);}
 .chip.dark{
   background:var(--ink);color:var(--soft);
-  font-size:10px;
+  font-size:10.5px;
 }
 .chip.dark:hover{background:var(--accent);color:var(--paper);}
 
@@ -481,7 +502,7 @@ nav.light .hamburger span{background:var(--ink);}
 }
 .contact-heading em{font-style:italic;color:var(--accent);}
 .contact-sub{
-  font-size:13px;color:var(--dark-mid);line-height:1.75;max-width:380px;
+  font-size:13px;color:var(--dark-mid);line-height:1.75;max-width:560px;
 }
 .contact-links{display:flex;flex-direction:column;gap:12px;align-items:flex-end;}
 .contact-link{
@@ -523,6 +544,7 @@ footer{background:var(--dark);border-top:1px solid var(--dark-rule);}
 
 /* ── RESPONSIVE ── */
 @media(max-width:960px){
+  .desktop-break{display:none;}
   .hero-grid{grid-template-columns:1fr;}
   .hero-name{font-size:clamp(52px,12vw,88px);}
   .hero-meta{justify-content:flex-start;gap:20px;flex-wrap:wrap;}
@@ -534,17 +556,14 @@ footer{background:var(--dark);border-top:1px solid var(--dark-rule);}
     grid-template-columns:1fr;
     gap:0;
   }
-  /* Each top-level child of recog-inner gets equal vertical padding */
-  .recog-inner > *{
+  .recog-block{
     padding-top:clamp(36px,5vw,56px);
     padding-bottom:clamp(36px,5vw,56px);
     border-bottom:1px solid var(--rule);
   }
-  .recog-inner > *:last-child{border-bottom:none;padding-bottom:0;}
-  /* Award card already has its own margin-bottom — flatten it on mobile */
-  .award-card{margin-bottom:28px;}
-  /* EU connection paragraph inside the right column */
-  .recog-inner > div > div[style]{margin-top:28px!important;}
+  .recog-block:nth-child(n+3){border-top:none;}
+  .recog-block:first-child{padding-top:0;}
+  .recog-block:last-child{border-bottom:none;padding-bottom:0;}
   .approach-grid{grid-template-columns:1fr;}
   .approach-item{border-left:none;padding-left:0;border-top:1px solid var(--mid-dark-rule);}
   .approach-item:first-child{border-top:none;}
@@ -553,18 +572,28 @@ footer{background:var(--dark);border-top:1px solid var(--dark-rule);}
   .contact-links{align-items:flex-start;}
   .contact-link .lbl{text-align:left;}
 }
+@media(max-width:768px){
+  .story-break{display:none;}
+}
 @media(max-width:600px){
   .nav-links,.nav-cv{display:none;}
   .hamburger{display:flex;}
   .hero-meta{display:none;}
 }
+
+.icon{width:1em;height:1em;display:inline-block;vertical-align:-0.12em;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.nav-cv,.footer-links a{display:inline-flex;align-items:center;gap:4px;}
+.link-arrow{display:inline-flex;align-items:center;justify-content:flex-end;}
+.overlay-close{display:inline-flex;align-items:center;justify-content:center;}
+.overlay-close .icon{width:22px;height:22px;}
+.nav-dir .icon{width:13px;height:13px;}
 </style>
 </head>
 <body>
 
 <!-- Mobile overlay -->
 <div class="nav-overlay" id="navOverlay">
-  <button class="overlay-close" id="navClose">×</button>
+  <button class="overlay-close" id="navClose" aria-label="Close menu"><svg class="icon icon-close" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4L12 12"/><path d="M12 4L4 12"/></svg></button>
   <a href="/" onclick="closeNav()">Work</a>
   <a href="/about" onclick="closeNav()">About</a>
   <a href="/contact" onclick="closeNav()">Contact</a>
@@ -579,7 +608,7 @@ footer{background:var(--dark);border-top:1px solid var(--dark-rule);}
     <li><a href="/about" class="active">About</a></li>
     <li><a href="/contact">Contact</a></li>
   </ul>
-  <a href="#" class="nav-cv">CV ↗</a>
+  <a href="../Arnit%20Manchanda_CV.pdf" class="nav-cv" target="_blank" rel="noopener">CV <svg class="icon icon-external" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4H12V10"/><path d="M12 4L5 11"/></svg></a>
   <div class="hamburger" id="burger"><span></span><span></span><span></span></div>
  </div>
 </nav>
@@ -595,7 +624,7 @@ footer{background:var(--dark);border-top:1px solid var(--dark-rule);}
         Arnit<br><em>Manchanda</em>
       </h1>
       <div class="hero-right">
-        <p class="hero-tagline">I design for <em>understanding,</em> not just visibility. Six years building visual systems, brand identities, and research communication for <strong>Fortune 500 clients</strong> — through US and UK enterprise teams.</p>
+        <p class="hero-tagline">I design for <em>understanding,</em> not just visibility.<br class="desktop-break">Six years building visual systems, brand identities,<br class="desktop-break">research communication for <strong>Fortune 500 clients</strong><br class="desktop-break">— and enterprise teams across the US and UK.</p>
         <div class="hero-meta">
           <div class="hero-meta-item">India <span>·</span> Open to EU</div>
           <div class="hero-meta-item">6+ Years</div>
@@ -622,13 +651,13 @@ footer{background:var(--dark);border-top:1px solid var(--dark-rule);}
 
     <div class="bio-body reveal">
       <p>
-        I'm Arnit Manchanda — a <strong>Senior Visual &amp; Brand Designer</strong> based in Delhi, India, with 6+ years of experience building visual systems, brand identities, editorial frameworks, and research communication for some of the world's most recognised companies. I work at the intersection of information design, brand thinking, and editorial craft — translating complex ideas into clear, structured systems that help people understand and decide.
+        I'm Arnit Manchanda — a <strong>Senior Visual &amp; Brand Designer</strong> based in Delhi, India, with 6+ years<br class="story-break">of experience building visual systems, brand identities, editorial frameworks, and research communication for some&nbsp;of&nbsp;the world's most recognised companies. I work at the intersection<br class="desktop-break">of information design, brand thinking, and editorial craft — translating complex ideas into clear, structured systems that help people understand and decide.
       </p>
       <p>
         Currently at <strong>Material</strong>, a US and UK-based enterprise design consultancy, I've owned end-to-end design across <strong>300+ projects</strong> for 20+ Fortune 500 clients spanning SaaS, tech, FMCG, healthcare, entertainment, film, fashion, consulting, and security. Before that I spent two years at <strong>UpGrad Enterprise</strong> — India's largest EdTech platform — where I was promoted from Visual Artist to Senior Editorial Lead within 12 months.
       </p>
       <p>
-        My background is international by design. I studied <strong>New Media Arts at the Polish-Japanese Academy of IT in Warsaw</strong> (2018–2021, grade 4.84/5), worked in an EU corporate environment in Poland, and have spent my career embedded within American and British teams and clients. An academic information design research project — <em>The Civic City / Inscriptions</em> — was exhibited at <strong>Palais de la Porte Dorée in Paris</strong>. I'm not relocating cold: I'm returning to a professional context I know.
+        My background is international by design. I studied <strong>New Media Arts at the Polish-Japanese <span class="nobr">Academy of IT</span> in Warsaw</strong> (2018–2021, grade 4.84/5), worked in an EU corporate environment<br class="story-break">in Poland, and have spent my career embedded within American and British teams and clients.<br class="story-break">An academic information design research project — <em>The Civic City / Inscriptions</em> — was exhibited<br class="story-break">at <strong>Palais de la Porte Dorée in Paris</strong>. I'm not relocating cold: I'm returning to a professional context<br class="story-break">I know.
       </p>
       <p>
         I'm actively seeking <strong>senior design roles, agency partnerships, and long-term freelance or retainer engagements in Europe</strong> — where I can bring Fortune 500-tested design thinking, international fluency, and a deep commitment to design that earns its place on the page.
@@ -661,7 +690,8 @@ footer{background:var(--dark);border-top:1px solid var(--dark-rule);}
           <span class="job-tag">SaaS</span>
           <span class="job-tag">Tech</span>
           <span class="job-tag">FMCG</span>
-          <span class="job-tag">Healthcare</span>
+          <span class="job-tag">BEAUTY</span>
+          <span class="job-tag">HEALTHCARE</span>
           <span class="job-tag">Entertainment</span>
           <span class="job-tag">Film</span>
           <span class="job-tag">Fashion</span>
@@ -750,46 +780,42 @@ footer{background:var(--dark);border-top:1px solid var(--dark-rule);}
 <section class="recog-section">
   <div class="recog-inner">
 
-    <!-- Left: Recognition -->
-    <div class="reveal">
+    <div class="reveal recog-block">
       <div class="bio-label">Recognition</div>
-
       <div class="award-card">
         <div class="award-org">Material · 2024</div>
-        <div class="award-name">Unity Value<br>Award</div>
+        <div class="award-name">Unity Value Award</div>
         <div class="award-desc">Awarded in first year for outstanding contribution to design practice and team culture — recognising both the quality of the work and the impact on the people around it.</div>
-      </div>
-
-      <div style="margin-top:24px;">
-        <div class="bio-label">Exhibition</div>
-        <div class="exhibit">
-          <div class="exhibit-bar"></div>
-          <div class="exhibit-body">
-            <div class="exhibit-tag">International Exhibition · Paris · 2019</div>
-            <div class="exhibit-title">The Civic City / Inscriptions</div>
-            <div class="exhibit-sub">Information design research translating Warsaw's civic time and urban identity into structured visual narratives — exhibited at Palais de la Porte Dorée, Musée National de l'Histoire de l'Immigration, Paris.</div>
-          </div>
-        </div>
       </div>
     </div>
 
-    <!-- Right: Education -->
-    <div class="reveal">
+    <div class="reveal recog-block">
       <div class="bio-label">Education</div>
-
       <div class="edu-block">
         <div class="edu-degree">BA New Media Arts<br>First Class</div>
         <div class="edu-school">Polish-Japanese Academy of Information Technology</div>
         <div class="edu-meta">Warsaw, Poland · 2018–2021 · Conducted in English</div>
         <div class="edu-grade">Grade: 4.84 / 5.0</div>
       </div>
+    </div>
 
-      <div style="margin-top:36px;">
-        <div class="bio-label">The EU connection</div>
-        <p style="font-size:13px;line-height:1.8;color:var(--mid);font-weight:300;max-width:480px;">
-          Three years studying and living in Warsaw. One year working in an EU corporate environment in Poland. A career embedded within US and UK organisations. Work exhibited in Paris. I'm not relocating cold — I'm returning to professional and cultural contexts I already know.
-        </p>
+    <div class="reveal recog-block">
+      <div class="bio-label">Exhibition</div>
+      <div class="exhibit">
+        <div class="exhibit-bar"></div>
+        <div class="exhibit-body">
+          <div class="exhibit-tag">International Exhibition · Paris · 2019</div>
+          <div class="exhibit-title">The Civic City / Inscriptions</div>
+          <div class="exhibit-sub">Information design research translating Warsaw's civic time and urban identity into structured visual narratives — exhibited at Palais de la Porte Dorée, Musée National de l'Histoire de l'Immigration, Paris.</div>
+        </div>
       </div>
+    </div>
+
+    <div class="reveal recog-block">
+      <div class="bio-label">The EU connection</div>
+      <p class="eu-copy">
+        Three years studying and living in Warsaw. One year working in an EU corporate environment in Poland. A career embedded within US and UK organisations. Work exhibited in Paris. I'm not relocating cold — I'm returning to professional and cultural contexts I already know.
+      </p>
     </div>
 
   </div>
@@ -843,6 +869,7 @@ footer{background:var(--dark);border-top:1px solid var(--dark-rule);}
           <span class="chip dark">Adobe Firefly</span>
           <span class="chip dark">Midjourney</span>
           <span class="chip dark">ChatGPT</span>
+          <span class="chip dark">Claude</span>
           <span class="chip dark">Gemini</span>
           <span class="chip dark">Google AI Studio</span>
           <span class="chip dark">NotebookLM</span>
@@ -910,7 +937,7 @@ footer{background:var(--dark);border-top:1px solid var(--dark-rule);}
   <div class="contact-inner">
     <div>
       <h2 class="contact-heading">Let's work<br><em>together.</em></h2>
-      <p class="contact-sub">Open to senior in-house roles, design consultancy partnerships, and long-term freelance or retainer engagements — particularly within Europe.</p>
+      <p class="contact-sub">Open to senior in-house roles, design consultancy partnerships,<br>and long-term freelance or retainer engagements<br>— particularly within Europe.</p>
     </div>
     <div class="contact-links">
       <a href="mailto:manchanda.arnit@gmail.com" class="contact-link">
@@ -937,7 +964,7 @@ footer{background:var(--dark);border-top:1px solid var(--dark-rule);}
     <a href="/work">Work</a>
     <a href="/about">About</a>
     <a href="/contact">Contact</a>
-    <a href="#">CV ↗</a>
+    <a href="../Arnit%20Manchanda_CV.pdf" target="_blank" rel="noopener">CV <svg class="icon icon-external" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4H12V10"/><path d="M12 4L5 11"/></svg></a>
   </div>
   <span class="footer-copy">© 2026</span>
  </div>
