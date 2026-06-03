@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Consumer Insight System — Arnit Manchanda</title>
+<link rel="icon" type="image/png" href="../../favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
@@ -239,7 +240,7 @@ nav.light .hamburger span{background:var(--ink);}
   object-position:center top;
   display:block;
   opacity:0.9;
-  padding:calc(20px + clamp(24px,4vw,40px)) 48px 48px 0;
+  padding:0 48px 48px 0;
   box-sizing:border-box;
 }
 .hero-img-placeholder{
@@ -710,13 +711,27 @@ footer{background:var(--dark);border-top:1px solid var(--dark-rule);}
   .hamburger{display:flex;}
   .hero-meta{grid-template-columns:1fr 1fr;}
 }
+
+.icon{width:1em;height:1em;display:inline-block;vertical-align:-0.12em;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.nav-cv,.footer-links a{display:inline-flex;align-items:center;gap:4px;}
+.link-arrow{display:inline-flex;align-items:center;justify-content:flex-end;}
+.overlay-close{display:inline-flex;align-items:center;justify-content:center;}
+.overlay-close .icon{width:22px;height:22px;}
+.nav-dir .icon{width:13px;height:13px;}
+
+
+@media(min-width:901px){
+  .hero-right{margin-right:0 !important;padding-top:calc(12px + clamp(24px,4vw,40px));}
+}
+.hero-img,.hero-img-placeholder{border-radius:6px !important;}
+
 </style>
 </head>
 <body>
 
 <!-- Mobile overlay -->
 <div class="nav-overlay" id="navOverlay">
-  <button class="overlay-close" id="navClose">×</button>
+  <button class="overlay-close" id="navClose" aria-label="Close menu"><svg class="icon icon-close" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4L12 12"/><path d="M12 4L4 12"/></svg></button>
   <a href="/">Work</a>
   <a href="/about">About</a>
   <a href="/contact">Contact</a>
@@ -731,7 +746,7 @@ footer{background:var(--dark);border-top:1px solid var(--dark-rule);}
     <li><a href="/about">About</a></li>
     <li><a href="/contact">Contact</a></li>
   </ul>
-  <a href="#" class="nav-cv">CV ↗</a>
+  <a href="../../Arnit%20Manchanda_CV.pdf" class="nav-cv" target="_blank" rel="noopener">CV <svg class="icon icon-external" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4H12V10"/><path d="M12 4L5 11"/></svg></a>
   <div class="hamburger" id="burger"><span></span><span></span><span></span></div>
  </div>
 </nav>
@@ -746,7 +761,7 @@ footer{background:var(--dark);border-top:1px solid var(--dark-rule);}
     <div class="hero-left">
 
       <div class="breadcrumb">
-        <a href="/work" class="breadcrumb-back">
+        <a href="https://www.arnitmanchanda.com/work/" class="breadcrumb-back">
           <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M11 5H1M1 5L5 1M1 5L5 9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -1216,14 +1231,14 @@ footer{background:var(--dark);border-top:1px solid var(--dark-rule);}
 
     <!-- PREV — Project 01 -->
     <a href="/work/project_the_civic_city/" class="nav-project prev">
-      <span class="nav-dir">← Previous Project</span>
+      <span class="nav-dir"><svg class="icon icon-arrow-left" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8L10 13"/><path d="M5 8H14"/></svg> Previous Project</span>
       <span class="nav-project-num">01 / 09</span>
       <span class="nav-project-title">The Civic City / Inscriptions</span>
     </a>
 
     <!-- NEXT — Project 03 -->
     <a href="/work/project_user_privacy_and_trust" class="nav-project next">
-      <span class="nav-dir next">Next Project →</span>
+      <span class="nav-dir next">Next Project <svg class="icon icon-arrow-right" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3L11 8L6 13"/><path d="M2 8H11"/></svg></span>
       <span class="nav-project-num">03 / 09</span>
       <span class="nav-project-title">Research Insight Design — User Privacy &amp; Trust</span>
     </a>
@@ -1238,7 +1253,7 @@ footer{background:var(--dark);border-top:1px solid var(--dark-rule);}
   <div class="contact-inner">
     <div>
       <h2 class="contact-heading">Let's work<br><em>together.</em></h2>
-      <p class="contact-sub">Open to senior in-house roles, design consultancy partnerships, and long-term freelance or retainer engagements — particularly within Europe.</p>
+      <p class="contact-sub">Open to senior in-house roles, design consultancy partnerships,<br>and long-term freelance or retainer<br>engagements — particularly within Europe.</p>
     </div>
     <div class="contact-links">
       <a href="mailto:manchanda.arnit@gmail.com" class="contact-link">
@@ -1265,7 +1280,7 @@ footer{background:var(--dark);border-top:1px solid var(--dark-rule);}
     <a href="/work">Work</a>
     <a href="/about">About</a>
     <a href="/contact">Contact</a>
-    <a href="#">CV ↗</a>
+    <a href="../../Arnit%20Manchanda_CV.pdf" target="_blank" rel="noopener">CV <svg class="icon icon-external" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4H12V10"/><path d="M12 4L5 11"/></svg></a>
   </div>
   <span class="footer-copy">© 2026</span>
  </div>
